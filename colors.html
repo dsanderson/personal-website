@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>D3 Colors</title>
+  <link rel="stylesheet" type="text/css" href="css/colors.css">
+  <script type="text/javascript" src="js/d3/d3.js"></script>
+  <script type="text/javascript" src="js/colors.js"></script>
+  <script type="text/javascript">
+    function change_bg() {
+      col = document.getElementById("bg_col").value;
+      d3.select("body").style('background-color',col);
+    };
+
+    function toggle_text() {
+      var els = document.getElementsByClassName("coltxt");
+      for(var i=0; i<els.length; ++i) {
+        var s = els[i].style;
+        s.visibility = s.visibility==='hidden' ? 'visible' : 'hidden';
+      };
+    };
+  </script>
+</head>
+<body>
+  <input type="text" id="bg_col" value="rgb(50,30,30)">
+  <button onclick="change_bg()">Change Background Color</button>
+  <button onclick="toggle_text()">Toggle color data</button>
+  <br>
+  <script type="text/javascript">
+    //width = '1000px'; height = '800px';
+    //var base_color = '#DDDDDD';//'#DD00BB'
+    //d3.select("body").style('background-color',base_color);
+    change_bg();
+    display([0.5,0.5,0.5],[0.25,0.25],3);
+  </script>
+</body>
+</html>

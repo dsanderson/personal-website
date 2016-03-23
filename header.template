@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The International Journal of DSA</title>
+    <link rel="stylesheet" href="css/article.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link href="css/prism.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  </head>
+  <body class="language-python">
+    <div class='header'>
+      <a href='/' class='home'>dsa.tech</a>
+      <div class='header-vertical'>
+        <div class='header-text'>
+        </div>
+        <div class='header-links'>
+        </div>
+      </div>
+    </div>
+    <div class='content'>

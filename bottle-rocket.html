@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Water Rocket Simulator</title>
+    <link rel="stylesheet" href="css/bottle-rocket.css">
+    <script src="js/d3/d3.js"></script>
+    <script src="js/bottle-rocket.js"></script>
+  </head>
+  <body>
+    <div class='content'>
+      <h1>Water Rocket Calculator</h1>
+      <div class='plots'>
+        <svg id='height-plot'>
+        </svg>
+        <div class='output'>
+          <table>
+            <tr><td>Max height: </td><td id="height-out"></td></tr>
+          </table>
+        </div>
+        <svg id='speed-plot'>
+        </svg>
+        <div class='output'>
+          <table>
+            <tr><td>Max speed: </td><td id="speed-out"></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class='controls'>
+        <form>
+          <table>
+            <tr><td>Air Pressure (PSI): </td><td><input type="number" name="air_pressure" id="air_pressure" min="0" max="100" step="1" value="60" onchange="run_from_form();"/></td><td id=pressure-out></td></tr>
+            <tr><td>Air Volume Percentage: </td><td><input type="number" name="air_vol" id="air_vol" min="0" max="100" value="50" onchange="run_from_form();"/></td><td id=volume-out></td></tr>
+            <tr><td>Area (sq. cm): </td><td><input type="number" name="area" id="area" min="0" value="79" onchange="run_from_form();"/></td><td id=area-out></td></tr>
+            <tr><td>Drag Coefficent: </td><td><input type="number" name="cd" id="cd" min="0" value="0.03" step="0.001" onchange="run_from_form();"/></td><td id=cd-out></td></tr>
+            <tr><td>Nozzle Radius (mm): </td><td><input type="number" name="nozzle" id="nozzle" min="0" value="11" onchange="run_from_form();"/></td><td id=r-out></td></tr>
+            <tr><td>Dry Mass (grams): </td><td><input type="number" name="mass" id="mass" min="0" value="20" onchange="run_from_form();"/></td><td id=mass-out></td></tr>
+            <!--<tr><td><input type="button" onclick="run_from_form();" value="Calculate!"/></td></tr>-->
+        </table>
+        </form>
+      </div>
+    </div>
+    <script type="text/javascript">
+      window.onload = run_from_form();//run(0.001,413685+101325,0.001,0.019,1000,101325,1.4,0.022,0.0079,0.03,1,9.8);
+    </script>
+  </body>
+</html>

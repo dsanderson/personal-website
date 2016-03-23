@@ -1,0 +1,20 @@
+div.excol {
+  display: inline-block;
+  width: 200px;
+  height: 100px;
+  padding-top: 25px;
+  padding-right: 50px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  background-clip:content-box;
+}
+
+div.excol p {
+  visibility: hidden;
+  display: table-cell;
+  width: 200px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 100px;
+  text-shadow: 0px 0px 10px #FFFFFF;
+}

@@ -1,0 +1,14 @@
+.footer {
+  line-height: 1.4;
+  margin: 40px auto;
+  max-width:80%;
+  line-height:1.6;
+  font-size:18px;
+  color:#DDD;
+  padding:0 10px;
+  text-align: center;
+}
+
+.footer > hr {
+  border-top: 1px solid #DDD;
+}
