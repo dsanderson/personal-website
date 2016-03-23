@@ -124,7 +124,7 @@ function plot_helper(id, data, xlabel, ylabel) {
 
 function plot(vs,zs,ts,masses) {
   var data = d3.zip(ts,zs);
-  plot_helper("#height-plot",data,'Time (s)','Height (m)');
+  plot_helper("#height-plot",data,'Time (s)','Altitude (m)');
   var data = d3.zip(ts,vs);
   plot_helper("#speed-plot",data,'Time (s)','Speed (m/s)');
 }
