@@ -153,6 +153,8 @@ function run(dt,p_0,V_0,dry_mass,rho_w,p_out,gamma,r,A,Cd,rho_a,g) {
 
   var i = 0;
 
+  var state = 'thrusting';
+
   while (z>=0) {
     //    if (i%1 == 0) {
     //      console.log(i,dv);
@@ -161,7 +163,11 @@ function run(dt,p_0,V_0,dry_mass,rho_w,p_out,gamma,r,A,Cd,rho_a,g) {
     zs.push(z);
     ts.push(t);
     masses.push(mass);
-    dt = dt_0
+    if ((mass <= dry_mass) && (state == 'thrusting')) {
+      dt_0 = dt_0*10;
+      state = 'coasting';
+    };
+    dt = dt_0;
     pressure = f_pressure(p_0,V_0,start_mass,mass,rho_w,gamma);
     mass_flow = f_mass_flow(r,rho_w,pressure,p_out);
     thrust = f_thrust(r,pressure,p_out);
