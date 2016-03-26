@@ -1,0 +1,67 @@
+.axis path,
+.axis line {
+  fill: none;
+  /*stroke: #000;*/
+  shape-rendering: crispEdges;
+}
+
+.axis {
+  stroke: #AAA;
+}
+
+.axis text {
+  fill: #AAA;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+
+#timer-arc {
+  fill: orchid;
+  stroke: orchid;
+  stroke-width: 1.5px;
+}
+
+#fridgeline {
+  fill: none;
+  stroke: tomato;
+  stroke-width: 1.5px;
+}
+
+#freezerline {
+  fill: none;
+  stroke: dodgerblue;
+  stroke-width: 1.5px;
+}
+
+#update-time {
+  color: #AAA;
+}
+
+#current-timer-text {
+  stroke: #AAA;
+  fill: #AAA;
+  font-family: sans-serif;
+}
+
+body {
+  color: #FFFFFF;
+  background-color: #333;
+  font-family: sans-serif;
+}

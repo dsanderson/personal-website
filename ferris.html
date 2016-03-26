@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ferris Brewler</title>
+  <script src="/js/d3/d3.min.js" charset="utf-8"></script>
+  <!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>-->
+  <link href="/css/ferris-brewler.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+  <h1 id="brew">Current Brew:</h1>
+  <div id="current" class="flex-container">
+    <span class='flex-item'>
+      Status <span id="update-time">(last updated )</span></br>
+      <div id="fridge-temp-text">Refridgerator Temperature: <span id="fridge-temp"></span></div>
+      <div id="freezer-temp-text">Freezer Temperature: <span id="freezer-temp"></span></div>
+      <div>Carbonation:</div>
+      <div>Pressure:</div>
+      <!--<svg id="current-svg">
+        <g id='current-svg-timer'>
+        </g>
+      </svg>-->
+    </span>
+    <span class='flex-item'>
+      <svg id="current-timer">
+      </svg>
+    </span>
+    <!--<span class='flex-item'>
+      <svg style='background: blue'>
+      </svg>
+    </span>-->
+  </div>
+  <div id="plots">
+    <svg id="plots-svg">
+      <g id="fridgegroup">
+      </g>
+      <g id="freezergroup">
+      </g>
+    </svg>
+  </div>
+  <script type="text/javascript" src="/js/ferris-brewler.js"></script>
+</body>
+</html>
