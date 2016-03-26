@@ -1,5 +1,6 @@
 body {
   margin-top: 0px;
+  background-color: #f4f4f4;
 }
 
 .header {
@@ -24,12 +25,12 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 5em;
   text-decoration: none;
-  color: #444;
+  color: #424242;
 }
 
 .line {
   width: 2px;
-  background-color: #444;
+  background-color: #424242;
   margin-left: 4px;
   margin-right: 4px;
 }
@@ -45,10 +46,10 @@ body {
 .header-links > a {
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
-  color: #444;
+  color: #424242;
 }
 
 .header-text {
   font-family: 'Roboto', sans-serif;
-  color: #444;
+  color: #424242;
 }
