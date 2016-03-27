@@ -4,15 +4,15 @@ display.attr('width',d_width);
 display.attr('height',d_height);
 
 var data;
-d3.csv("temp_data.csv",function(d) {
+d3.csv("ferris.csv",function(d) {
   data = d;
   draw_display();
   draw_timer(beer_data);
 });
 //console.log(data);
 
-var beer_data = {'name':"Ferris Brewler's Day Hops", 'endtime':1451577600*1000,
-  'starttime':1450535431*1000, 'PSI':14.0, 'carbonation':2.48};
+var beer_data = {'name':"Czech Czillsner", 'endtime':1460088000*1000,
+  'starttime':1458878400*1000, 'PSI':14.0, 'carbonation':2.48};
 
 function estimate_carbonation(psi,temp) {
   //TODO add real estimate
@@ -33,26 +33,26 @@ function draw_display() {
   data.forEach(function(d) {
     d.time = new Date(+d.time*1000);
   });
-  console.log(data);
+  // console.log(data);
   //extract the fridge & freezer data, as well as the current time
   //console.log(data);
   d3.select('#brew').text('Current Brew: '+beer_data['name']);
-  temps_freezer = data.filter(function(e,i,a) {
-    return e["sensor"] == 'freezer';
+  states_controller = data.filter(function(e,i,a) {
+    return e["sensor"] == 'Compressor State';
   });
   temps_fridge = data.filter(function(e,i,a) {
-    return e["sensor"] == 'fridge';
+    return e["sensor"] == 'Fridge Temperature Avg';
   });
-  temp_freezer = temps_freezer[temps_freezer.length-1];
+  state_controller = states_controller[states_controller.length-1];
   temp_fridge = temps_fridge[temps_fridge.length-1];
-  last_time = d3.max([temp_freezer['time'],temp_fridge['time']]);
+  last_time = d3.max([state_controller['time'],temp_fridge['time']]);
   time_fmt = d3.time.format("%c")
   d3.select('#update-time').text('Last Updated '+time_fmt(last_time));
-  console.log(last_time);
-  console.log(time_fmt(new Date(+last_time)));
+  //console.log(last_time);
+  //console.log(time_fmt(new Date(+last_time)));
   var col = 'Springgreen';
   d3.select('#fridge-temp').text(temp_fridge['value'].toString()).attr('style','color:'+col);
-  d3.select('#freezer-temp').text(temp_freezer['value'].toString()).attr('style','color:'+col);
+  d3.select('#controller-state').text(state_controller['value'].toString()).attr('style','color:'+col);
 
 
   //add timer for beer readiness
@@ -114,44 +114,44 @@ function draw_display() {
 
   //add the plot for the freezer just below
 
-  var freezerGroup = d3.select('#freezergroup');
+  var controllerGroup = d3.select('#controllergroup');
 
-  var freezerY = d3.scale.linear()
+  var controllerY = d3.scale.linear()
       .range([height, 0]);
 
-  var freezerYAxis = d3.svg.axis()
-      .scale(freezerY)
+  var controllerYAxis = d3.svg.axis()
+      .scale(controllerY)
       .orient("left");
 
-  var freezerLine = d3.svg.line()
+  var controllerLine = d3.svg.line()
     .x(function(d) { return x(d.time); })
-    .y(function(d) { return freezerY(+d.value); })
+    .y(function(d) { return controllerY(+d.value); })
     .interpolate('linear');
 
   x.domain(d3.extent(data, function(d) { return d.time; }));
-  freezerY.domain(d3.extent(temps_freezer, function(d) { return +d.value; }));
+  controllerY.domain(d3.extent(states_controller, function(d) { return +d.value; }));
 
-  freezerGroup.append('g').attr('class','x axis')
+  controllerGroup.append('g').attr('class','x axis')
     .attr('transform','translate(0,'+height+')')
     .call(xAxis);
 
-  freezerGroup.append('g').attr('class','y axis')
+  controllerGroup.append('g').attr('class','y axis')
     .attr('transform','translate(0,0)')
-    .call(freezerYAxis)
+    .call(controllerYAxis)
     .append("text")
     //.attr("transform", "rotate(-90)")
     .attr('transform','translate(5,-5)')
     .attr("y", 6)
     .attr("dy", ".71em")
     .style("text-anchor", "start")
-    .text("Freezer Temp. (C)");
+    .text("Controller State");
 
-  freezerGroup.append('path')
-    .datum(temps_freezer)
-    .attr('id','freezerline')
-    .attr('d',freezerLine);
+  controllerGroup.append('path')
+    .datum(states_controller)
+    .attr('id','controllerline')
+    .attr('d',controllerLine);
 
-  freezerGroup.attr('transform','translate('+padding.left+','+(height+padding.top+padding.bottom)+')');
+  controllerGroup.attr('transform','translate('+padding.left+','+(height+padding.top+padding.bottom)+')');
 
 }
 
