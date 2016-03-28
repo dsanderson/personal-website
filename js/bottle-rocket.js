@@ -164,7 +164,7 @@ function run(dt,p_0,V_0,dry_mass,rho_w,p_out,gamma,r,A,Cd,rho_a,g) {
     ts.push(t);
     masses.push(mass);
     if ((mass <= dry_mass) && (state == 'thrusting')) {
-      dt_0 = dt_0*10;
+      dt_0 = dt_0*100;
       state = 'coasting';
     };
     dt = dt_0;
@@ -209,5 +209,5 @@ function run_from_form() {
   d3.select('#cd-out').text(document.getElementById("cd").value);
   d3.select('#r-out').text(document.getElementById("nozzle").value);
   d3.select('#mass-out').text(document.getElementById("mass").value);*/
-  run(0.001,p_0+101325,V_0,dry_mass,1000,101325,1.4,r,A,Cd,1,9.8);
+  run(0.0001,p_0+101325,V_0,dry_mass,1000,101325,1.4,r,A,Cd,1,9.8);
 }
