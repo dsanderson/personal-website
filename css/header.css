@@ -1,15 +1,21 @@
 body {
   margin-top: 0px;
   background-color: #f4f4f4;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .header {
+  font-family: 'Raleway', sans-serif;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: stretch;
   align-content: flex-start;
+  background-color: rgb(212,15,19);
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .header-vertical {
@@ -22,10 +28,10 @@ body {
 }
 
 .home {
-  font-family: 'Roboto', sans-serif;
   font-size: 5em;
   text-decoration: none;
-  color: #424242;
+  color: #f4f4f4;
+  margin-right: 10px;
 }
 
 .line {
@@ -44,12 +50,10 @@ body {
 }
 
 .header-links > a {
-  text-decoration: none;
-  font-family: 'Roboto', sans-serif;
-  color: #424242;
+  text-decoration: underline;
+  color: #f4f4f4;
 }
 
 .header-text {
-  font-family: 'Roboto', sans-serif;
-  color: #424242;
+  color: #f4f4f4;
 }

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The International Journal of DSA</title>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/article.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/highlight/agate.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+  </head>
+  <body class="language-python">
+    <div class='header'>
+      <a href='/' class='home'>dsa.tech</a>
+      <!--<div class="line">
+      </div>-->
+      <div class='header-vertical'>
+        <div class='header-text'>
+          Technocrat-in-training
+        </div>
+        <div class='header-links'>
+          <a href='/'>Home</a>
+          <a href='/about.html'>About</a>
+          <a href='/contact.html'>Contact</a>
+        </div>
+      </div>
+    </div>
+    <!--<hr id='header-hr'/>-->
+    <div class='content'>
+
+<h1 id="twitter-link-aggregating-bot">Twitter link aggregating bot</h1>
+<p>So this project is yet another attempt to assuage the creeping horror at the shear amount of information added online, and my inability to come anywhere close to comprehending it. Twitter is an amazing source of semi-structured data that mirrors what communities are currently discussing, and various bots exist to <a href="http://devel.uttendorfer.net/hn-bot-top-stories/">cross-post stories</a>, <a href="http://arxiv.org/abs/1010.3003">predict economic trends based on people's emotions</a>, and <a href="http://blog.andrewcantino.com/blog/2014/03/17/know-when-the-world-changes-with-huginn/">easily note new items of interest</a>. Writing bots seemed pretty painless, so I decided to take a stab at it.</p>
+<h2 id="the-bot">The bot</h2>
+<p>The bot is based on the <a href="http://www.tweepy.org/">tweepy</a> python library, which provides a wonderful interface to the Twitter API and to the tweets themselves. As mentioned above, the hope is to tap some tiny portion of the deluge of info on Twitter, and compress it. Specifically, I would like to see the popular links on twitter for topics I'm interested in. I decided to start with robotics, as that is a subject I'm really interested in, and a new enough field that cool robots often hit the internet before they hit papers.</p>
+<p>My goal was to get this done fast and easy. I run Jupyter on a Digital Ocean VPS, so I can access and run python code from anywhere on the internet. Since I would only use this 2-3 times a day, a streaming approach seemed too heavyweight-it would be easy to fail and loose content, requiring more monitoring infrastructure that I didn't want. The twitter REST API provides the ability to search tweets-with this, and the tweepy documentation, I could collect tweets containing certain terms. A (literal) rough sketch of the code is below: <img src="images/twitter-link-bot/code.png" alt="image" /></p>
+<p>Step one is the authentication. This is mostly done following the tweepy documentation: Log into twitter, got to apps.twitter.com, and register an new app. From this, you can get the <code>consumer key</code> and <code>consumer secret</code>, which are necessary to do the OAuth-dance. The code below will use the <code>consumer key</code> and <code>consumer secret</code> to request an OAuth URL.</p>
+<pre><code>import tweepy
+consumer_key = &quot;XXX&quot;
+consumer_secret = &quot;XXX&quot;
+auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
+redirect_url = auth.get_authorization_url()
+print redirect_url</code></pre>
+<p>You should see something like <code>u'https://api.twitter.com/oauth/authorize?oauth_token=XXXX'</code>. If you go to that URL (without the leading 'u' or quotation marks), you'll get a numeric OAuth key. Plug that key into the line below</p>
+<pre><code>access_token = auth.get_access_token(&#39;OAuth key&#39;)</code></pre>
+<p>And tweepy will fetch the access token and associated secret. If you <code>print access_token</code>, you'll see a tuple with two strings; the first is the <code>access_token</code> itself, the second is the <code>access_token_secret</code>. Using these four strings (the <code>consumer_key</code>, <code>consumer_secret</code>, <code>access_token</code> and <code>access_token_secret</code>), we can now use the twitter API!</p>
+<p>So, I want to pass (or, in this case, hard-code) a list of terms, which tweepy will use to search for recent tweets, then aggregate the most popular links, and display them. Below is the code:</p>
+<pre><code>import collections, tweepy, copy
+
+#create twitter session
+consumer_key = u&#39;X&#39;
+consumer_secret = u&#39;X&#39;
+access_token = u&#39;X&#39;
+access_token_secret = u&#39;X&#39;
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+api = tweepy.API(auth)
+
+#Terms to search
+terms = [&#39;robotics&#39;,&#39;robots&#39;,&#39;automata&#39;]
+results = {}
+
+#search for each term, and add the results to a dictionary-maximum 1000 tweets per term
+for term in terms:
+    tweets = []
+    print &#39;Finding tweets containing the word {}&#39;.format(term)
+    for tweet in tweepy.Cursor(api.search,
+                           q=term,
+                           count=100,
+                           result_type=&quot;recent&quot;,
+                           include_entities=True,
+                           lang=&quot;en&quot;).items():
+        tweets.append(copy.deepcopy(tweet))
+        if len(tweets)&gt;=1000:
+            break
+    results[term] = copy.deepcopy(tweets)
+    print &#39;Done&#39;
+
+#for each term, print some basic stats, find the most oft-tweeted terms, and print them in a nice list
+for term in terms:
+    print &#39;&#39;
+    urls = []
+    for tweet in results[term]:
+        try:
+            for u in tweet.entities[&#39;urls&#39;]:
+                urls.append(u[&#39;expanded_url&#39;])
+        except:
+            pass
+    print &#39;Found {} tweets containing &quot;{},&quot; first tweet at {}&#39;.format(len(results[term]),term,results[term][-1].created_at)
+    print &#39;Fourd {} URLs&#39;.format(len(urls))
+    url_counter = collections.Counter(urls)
+    print &quot;{}: Top 10 most common URLs:&quot;.format(term)
+    for u in url_counter.most_common(10):
+        print &quot;{}\t{}&quot;.format(u[1],u[0])</code></pre>
+<p>The first ~10 lines are just importing useful libraries, and boilerplate to authenticate with twitter. Line 13 has the good stuff, where we list terms we want to search twitter for. Due to API rate limiting, there should be a maximum of ~15 terms, but I haven't come anywhere close to that yet. We also create an empty dictionary, to hold the tweets we get from the each search term.</p>
+<p>The next block of code (lines 15-29) downloads the actual tweets. For each term in the list from earlier, a search request is made, and the tweets returned are iterated over. Each tweet is added to the <code>tweets</code> array, up to a maximum of 1000 tweets. The <code>tweet</code> array is then copied into the <code>results</code> dictionary, using the search term as a key. I make a copy using <code>copy.deepcopy</code>, as I've been burned enough times by mutability that I tend to make copies of complex objects before sticking them in arrays to process.</p>
+<p>The next block (lines 31-46) actually gives us the results we want. For each term, the URL's are pulled out from each tweet and stored in a separate array. There will be a lot of duplicated URLs--this is a good thing! We stick the array into a <code>Counter</code> object (line 41). This is a type provided by the standard <code>collections</code> library, and it will count the number of occurrences of an item in an iterable. It gives us the nice <code>most_common()</code> function, which we use to get the most common URLs, which we print along with their count. Done!</p>
+<p>This has already proved a handy tool for me, bringing up news items on robots that I would otherwise miss as they fail to hit the ranks of Hacker News or reddit. My next steps include de-shortening the URLs, and using likes and retweet data to improve the counting approach.</p>
+
+<div class="footer">
+  <hr/>
+  Made by David Anderson, 2016
+</div>
