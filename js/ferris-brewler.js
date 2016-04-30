@@ -37,23 +37,24 @@ function draw_display() {
   //extract the fridge & freezer data, as well as the current time
   //console.log(data);
   d3.select('#brew').text('Current Brew: '+beer_data['name']);
-  states_controller = data.filter(function(e,i,a) {
+  /*states_controller = data.filter(function(e,i,a) {
     return e["sensor"] == 'Compressor State';
-  });
+  });*/
   temps_fridge = data.filter(function(e,i,a) {
     //return e["sensor"] == 'Fridge Temperature Avg';
     return (e["sensor"] == 'Fridge Temperature 1') || (e["sensor"] == 'Fridge Temperature Avg');
   });
-  state_controller = states_controller[states_controller.length-1];
+  //state_controller = states_controller[states_controller.length-1];
   temp_fridge = temps_fridge[temps_fridge.length-1];
-  last_time = d3.max([state_controller['time'],temp_fridge['time']]);
+  //last_time = d3.max([state_controller['time'],temp_fridge['time']]);
+  last_time = d3.max([temp_fridge['time']]);
   time_fmt = d3.time.format("%c")
   d3.select('#update-time').text('Last Updated '+time_fmt(last_time));
   //console.log(last_time);
   //console.log(time_fmt(new Date(+last_time)));
   var col = 'Springgreen';
   d3.select('#fridge-temp').text(temp_fridge['value'].toString()).attr('style','color:'+col);
-  d3.select('#controller-state').text(state_controller['value'].toString()).attr('style','color:'+col);
+  //d3.select('#controller-state').text(state_controller['value'].toString()).attr('style','color:'+col);
 
 
   //add timer for beer readiness
@@ -114,7 +115,7 @@ function draw_display() {
   fridgeGroup.attr('transform','translate('+padding.left+','+padding.top+')');
 
   //add the plot for the freezer just below
-
+  /*
   var controllerGroup = d3.select('#controllergroup');
 
   var controllerY = d3.scale.linear()
@@ -153,7 +154,7 @@ function draw_display() {
     .attr('d',controllerLine);
 
   controllerGroup.attr('transform','translate('+padding.left+','+(height+padding.top+padding.bottom)+')');
-
+  */
 }
 
 function draw_timer(beer_data) {
