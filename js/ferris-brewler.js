@@ -41,7 +41,8 @@ function draw_display() {
     return e["sensor"] == 'Compressor State';
   });
   temps_fridge = data.filter(function(e,i,a) {
-    return e["sensor"] == 'Fridge Temperature Avg';
+    //return e["sensor"] == 'Fridge Temperature Avg';
+    return (e["sensor"] == 'Fridge Temperature 1') || (e["sensor"] == 'Fridge Temperature Avg');
   });
   state_controller = states_controller[states_controller.length-1];
   temp_fridge = temps_fridge[temps_fridge.length-1];
