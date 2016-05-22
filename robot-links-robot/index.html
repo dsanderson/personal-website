@@ -31,12 +31,21 @@
     <!--<hr id='header-hr'/>-->
     <div class='content'>
 
-<h1 id="website-for-dsa.tech">Website for dsa.tech</h1>
-<h2 id="todo">Todo</h2>
-<p>Deploy flask on subdirectory</p>
-<p>Write history post</p>
-<p>Expand projects/todo page</p>
-<p>add authentication</p>
+<div id="bot-links">
+
+</div>
+<script>
+  function write_page(text) {
+    document.getElementById("bot-links").innerHTML = text;
+  }
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            write_page(xmlHttp.responseText);
+  }
+  xmlHttp.open("GET", "./bot-raw.html", true);
+  xmlHttp.send(null);
+</script>
 
 <div class="footer">
   <hr/>
