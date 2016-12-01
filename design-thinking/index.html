@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The International Journal of DSA</title>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/article.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/highlight/agate.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+  </head>
+  <body class="language-python">
+    <div class='header'>
+      <a href='/' class='home'>dsa.tech</a>
+      <!--<div class="line">
+      </div>-->
+      <div class='header-vertical'>
+        <div class='header-text'>
+          Technocrat-in-training
+        </div>
+        <div class='header-links'>
+          <a href='/'>Home</a>
+          <a href='/about.html'>About</a>
+          <a href='/contact.html'>Contact</a>
+        </div>
+      </div>
+    </div>
+    <!--<hr id='header-hr'/>-->
+    <div class='content'>
+
+<h1 id="how-to-think-design">How to think design</h1>
+<p>In this post, I'm going to do my best to explain the core insights of design thinking, and just enough of the tools that have been developed over the years to be dangerous.</p>
+<p>Design Thinking has become a bit of a buzz word lately, but it's become a buzz word for good reasons. The success of applying design thinking to different industries and problems (look at IDEO, or Frog) is kinda like the success of the manufacturing revolution of the 80's and 90's, or of robust engineering (I chose those examples because they're the ones I'm most familiar with). For me, for each of these three movements (and many others) there are two important aspects. First, each movement has a small set of rules, observations or perspectives that really define the movement and capture most of the insights. A smart, motivated team could take just those observations and develop, on their own and in fairly short order, approaches that would get them 80% of the way there. Second, each of these movements has had a lot of smart people spend a lot of time studying, measuring and thinking through applications of those rules and insights, and learning these methods can get you further, faster, than trying to rederive them yourself.</p>
+<p>To that end, I'm going to start by sharing my take on what are the key insights for design thinking. After that, I'll walk through several tools that we find really useful and widely applicable in out projects.</p>
+<h2 id="my-key-insights-for-design-thinking">My Key Insights for Design Thinking</h2>
+<p>I always feel there are a few key insights to understanding a new concept. In the case of the manufacturing revolutions, two of those insights would be to match you manufacturing metrics as closely as possibly to company profit/revenue, and to instrument <strong>everything</strong>. The core goal of most institutions in applying design thinking is to do a better job meeting customer needs, which in the long term can lead to customer growth, better market lock-in, and new products. In my view, this breaks down into two components: How do we discover user needs and understand how well they are satisfied, and how do we generate ideas to fill those needs? Building products without anyone actually having a need to be fulfilled is a classic failure mode for big companies and startups alike, while finding a need which excites customers then doing a terrible job executing on it disappoints everyone (look at most recent video game remasters). For the first problem, <strong>finding and evaluating user needs</strong>, the insights I consider key are:</p>
+<ul>
+<li><strong>Users don't know what they want</strong>: Simply asking users what they want does not provide useful responses, generally. Instead, it's much better to study users as they interact with your product/problem, and derive needs from their actions</li>
+<li><strong>Only the users really know what problems they face</strong>: Opposite the first point, non-users speculating as to what the real problems are will usually be even more wrong. This point may seems really obvious, but it is dangerously easy to inject your own views, from poorly crafted interview questions to cherry-picking responses.</li>
+<li><strong>&quot;Users&quot; can refer to much more than just then end user</strong>: The phrase &quot;stakeholders&quot; is often used here. This is really a matter of how you scope you design process, but you can generally treat groups such as your support or manufacturing teams as users and consider their needs in designing products. Likewise, you may discover people using your product who you never expected to buy it. An oft-cited example is Oxo, who designed their products for arthritics and old people, but discovered most adults enjoy comfortable cookware.</li>
+</ul>
+<p>And that's it! In my view, if you keep those 3 points in mind and are diligent in ensuring you don't violate them, you'll do a far better job than most in discovering opportunities to please your users. As for the second problem, <strong>generating good ideas</strong>, I try to stick to the following ideas:</p>
+<ul>
+<li><strong>More ideas at the start = better final idea</strong>: This is another observation that may seem obvious, but has inspired a whole field in it its own right. The easiest way to generate more <em>good</em> ideas, is to generate more ideas overall. Likewise, you want to generate ideas that are <em>different</em> from ones you already have. This is where concepts like fixation become important, and the structure of your design process (especially feedback and metrics) can have a huge impact, both positive and negative</li>
+<li><strong>Experience is useful</strong>: While coming up with a bunch of whacky, implausible ideas is fun and has use at some points in the process, experience and understanding of user needs is important in eventually generating ideas that <em>work</em>. This is where ideas such as co-creation, lead users and empathy techniques become really useful.</li>
+</ul>
+<p>Finally, there is one overriding principle: <strong>Iterate</strong>. How do you tell your idea is good? You apply the need-evaluating methods to it, generating prototypes. How do you refine your ideas? You apply the idea-generating methods. You iterate frequently, bouncing between methods and motives, refining and generating ideas as appropriate.</p>
+<h2 id="methods">Methods</h2>
+<p>Now, while I think the ideas mentioned above are critical to producing good designs, lots of smart and experienced people have developed lots of good ways of implementing those principles for particular cases, and using these methods can save a lot of time and trouble. Here's a brief rundown of the methods we use, and my thoughts on their application</p>
+<h3 id="discovering-user-needs">Discovering user needs</h3>
+<ul>
+<li>Articulated use: You have a person, ideally a typically user, try out your product and record what parts go well &amp; what don't. You can ask the user to speak through the process, or ask them questions during it.</li>
+<li>Journey maps/user activity diagrams: In my view, these are kind of a parent of the articulated use. For these methods, you follow users through their routine, noting what they are doing, what parts went well and what parts didn't, and where users interact. This info is really useful when designing systems and processes, and helps you discover needs hiding in the interactions between individual products.</li>
+<li>Likes/dislikes: This is a personal favorite of mine, as it is both relatively low-effort and can be used in a lot of situations. One challenge in interviewing users directly is asking suitably broad questions. In this case, you pick a particular activity/feature/subject, and ask the user to talk through what parts they liked, and what parts they didn't.</li>
+<li>Personas: This is more an information management technique, but you create fake personalities that represent broad categories of users. This is useful for designers, to quick consider the implications of their decisions on <em>Persona X</em>, rather then abstractly referencing some enormous document of user needs.</li>
+<li>Lead users/empathic lead users: This is another personal favorite. Lead users are your extreme users, people pushing your project or problem to the limits. These users will discover potential needs before anyone else, and will often start improvising solutions to their problems. If you can't study lead users, you can simulate it by, say, having a designer wear oven mitts, or a blindfold, or earplugs, and try to use your product.</li>
+</ul>
+<p>The methods above will give you many <em>insights</em>, but they don't directly translate to needs. This is where things can get fuzzy; our usual approach is to make a big document listing our observations, then all the designers individually look through the observations and list what <em>needs</em> each observation reveals. As a group, we then group and sort those <em>interpreted needs</em>, and move forward from there.</p>
+<h3 id="generating-ideas">Generating ideas</h3>
+<p>Before listing these methods, it's important to mention fixation. Fixation is the tendency, even by experienced designers, to have difficulty thinking of different ideas once one idea has been proposed. Many of these methods are attempting to address this problem.</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Mind_map">Mindmapping</a>.</li>
+<li><a href="https://www.youtube.com/watch?v=yCgENHW0nzY">6-3-5</a>: We often pair these two techniques, and they are personal favorites of mine.</li>
+<li>Analogy: There are many systems out there, such as asknature, which will present you with ideas from other domains which may lead to creative ideas in your own domain.</li>
+<li>Triz: This is a cool technique that uses a vast dataset of patents to identify common methods of resolving engineering conflicts. If you can map your problem onto those conflicts, you can get quick descriptions of, abstractly, how others improved their designs. There are many online tools to assist with applying this technique.</li>
+<li>Morphological Matrix: If you can break your ideation into different <em>functions</em>, you can list all your ideas for solving those functions as lists, then consider designs as paths connecting elements from each list.</li>
+<li>Pugh Charts: If you know how you'll rank design success, you can place your ideas side-by-side and mark if you think each idea will do well, average or poorly in each category. You then try to attack the poor-performing aspect of each design.</li>
+</ul>
+<p>I hope this is useful!</p>
+
+<div class="footer">
+  <hr/>
+  Made by David Anderson, 2016
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-78161507-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
