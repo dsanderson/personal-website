@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section><h2>Stuff I'm Working On</h2></section>
+				<section>
+					<section>
+						Cognitive Strategies for Design Automation
+						<ul>
+							<li>How do design automation experts decide how to integrate computers in their design process?</li>
+							<li>What are the challenges and observations that motivate their decision process?</li>
+							<li>Where can we share ideas, approaches and solutions between architecture and engineering?</li>
+						</ul>
+					</section>
+					<section>
+						Approach:
+					</section>
+					<section>
+						Most pressing challenges
+					</section>
+					<section>
+						Some interesting solutions
+					</section>
+					<section>
+						Applied to my work:
+					</section>
+				</section>
+				<section>
+					Just enough ML to be dangerous
+				</section>
+				<section>
+					<section>
+						Stats approach
+					</section>
+					<section>
+						The world works for
+					</section>
+				</section>
+
+				<section>
+					<section>
+						Geometric approach
+					</section>
+					<section>
+						Core assumption: Our data lives in some lower-dimensional manifold in higher-dimensional space.</br>
+						The goal of our ML system is to discover and reverse this embedding, letting us examing and work the data in its "true" form.
+					</section>
+					<section>
+						Swiss roll picture
+						Sample output picture
+					</section>
+					<section>
+						Example of the layers in the neural network as it does its thing in 2D
+					</section>
+					<section>
+						Autoencoders
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
