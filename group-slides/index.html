@@ -52,11 +52,47 @@
 				</section>
 				<section>
 					<section>
-						Stats approach
+						<h2>Stats Approach (Probabalistic Programming)</h2>
 					</section>
 					<section>
-						The world works for
+						<h3>We have a bunch of observations, $\theta_n$</h3>
+						<p>Is it raining at Tanah Merah?</p>
+						<p>Is it raining at Pasir Ris?</p>
+						<p>Is it raining at Changi Airport?</p>
 					</section>
+					<section>
+						<h3>These observations are incomplete.</h3>
+						<p>We don't directly measure wind patterns, humidity, etc.</p>
+					</section>
+					<section>
+						<h3>All of machine learning is estimating $P(X|\theta_{0..n})$</h3>
+						<p>If we know it's raining in Pasir Ris and Changi, how likely is it to rain on campus in the next 5 minutes?</p>
+					</section>
+					<section>
+						<h3>Bayes' Theorm</h3>
+						$$P(X|\theta) = \frac{P(\theta|X)P(X)}{P(\theta)}$$
+						<p>As we collect data, our guess for $P(X|\theta)$ gets more accurate</p>
+					</section>
+					<section>
+						<h3>Graphs are a more concise form of contingency tables</h3>
+						<p>insert sample table and graph here</p>
+					</section>
+					<section>
+						<h3>This is a hierarchical baysian model</h3>
+						<p>You collect observations to "fit" the probability distribution of each node</p>
+						<p>The less flexibility in your model, the less data you need</p>
+					</section>
+					<section>
+						<h3>Making hieirarchical baysian models</h3>
+						<p>Use a library</p>
+						<p>PyMC3...</p>
+					</section>
+					<section>
+						<h3>Probabalistic Programming</h3>
+						<p>Our model is probability distibution, from which we can draw samples</p>
+						<p>We can generalize beyond a DAG</p>
+					</section>
+
 				</section>
 
 				<section>
@@ -94,7 +130,8 @@
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/math/math.js', async: true }
 				]
 			});
 		</script>
