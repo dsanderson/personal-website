@@ -7,7 +7,7 @@
 		<title>reveal.js</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/white.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -24,10 +24,12 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section><h2>Stuff I'm Working On</h2></section>
+				<section><h2>Stuff I'm Doing</h2></section>
 				<section>
 					<section>
-						Cognitive Strategies for Design Automation
+						<h3>Cognitive Strategies for Design Automation</h3>
+					</section>
+					<section>
 						<ul>
 							<li>How do design automation experts decide how to integrate computers in their design process?</li>
 							<li>What are the challenges and observations that motivate their decision process?</li>
@@ -35,24 +37,36 @@
 						</ul>
 					</section>
 					<section>
-						Approach:
+						<img src="busstop.png"></img>
 					</section>
 					<section>
-						Most pressing challenges
-					</section>
-					<section>
-						Some interesting solutions
-					</section>
-					<section>
-						Applied to my work:
+						<ul>
+							<li>Limitations: What are the implicit limitations a particular design tool places on the design space?
+								<ul>
+									<li>Use upper and lower bounds extensively, to operate at a higher level of abstraction</li>
+									<li>Work up from component libraries, so limitations are explicit and motivated by reality</li>
+									<li>Have the designers manually find bounds on the spaces</li>
+								</ul>
+							</li>
+							<li>Discovery: finding the right software, discovering how to use it, locating input data and models, etc.
+								<ul>
+									<li>Crowdsourcing</li>
+									<li>Hiring experts</li>
+									<li>Use crowdsourcing to train computer models</li>
+									<li>Build your own software</li>
+								</ul>
+							</li>
+						</ul>
 					</section>
 				</section>
+
 				<section>
-					Just enough ML to be dangerous
+					<h3>Just enough <strike>AI</strike> Machine Learning to be dangerous</h3>
 				</section>
+
 				<section>
 					<section>
-						<h2>Stats Approach (Probabalistic Programming)</h2>
+						<h2>Probabilistic Programming</h2>
 					</section>
 					<section>
 						<h3>We have a bunch of observations, $\theta_n$</h3>
@@ -61,7 +75,7 @@
 						<p>Is it raining at Changi Airport?</p>
 					</section>
 					<section>
-						<h3>These observations are incomplete.</h3>
+						<h3>These observations are incomplete</h3>
 						<p>We don't directly measure wind patterns, humidity, etc.</p>
 					</section>
 					<section>
@@ -69,49 +83,308 @@
 						<p>If we know it's raining in Pasir Ris and Changi, how likely is it to rain on campus in the next 5 minutes?</p>
 					</section>
 					<section>
-						<h3>Bayes' Theorm</h3>
+						<h3>Tables vs. Graphs</h3>
+						<table>
+							<tr>
+								<td style="vertical-align:top;">
+									<table  style="font-size:50%;vertical-align:top;">
+										<tr>
+											<td>Is it raining in Changi?</td><td>Is it raining in Tanah Merah?</td><td>Is it raining in Pasir Ris?</td><td>How often did it rain on campus 5 minutes later?</td>
+										</tr><tr>
+											<td>Yes</td><td>Yes</td><td>Yes</td><td>95%</td>
+										</tr><tr>
+											<td>Yes</td><td>Yes</td><td>No</td><td>94%</td>
+										</tr><tr>
+											<td>Yes</td><td>No</td><td>Yes</td><td>93%</td>
+										</tr><tr>
+											<td>No</td><td>Yes</td><td>Yes</td><td>72%</td>
+										</tr><tr>
+											<td>No</td><td>Yes</td><td>No</td><td>71%</td>
+										</tr><tr>
+											<td>Yes</td><td>No</td><td>No</td><td>90%</td>
+										</tr><tr>
+											<td>No</td><td>No</td><td>Yes</td><td>70%</td>
+										</tr><tr>
+											<td>No</td><td>No</td><td>No</td><td>0.2%</td>
+										</tr>
+									</table>
+								</td>
+								<td>
+									<img src="graph2.png"></img>
+								</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h3>Bayes' Theorem</h3>
 						$$P(X|\theta) = \frac{P(\theta|X)P(X)}{P(\theta)}$$
 						<p>As we collect data, our guess for $P(X|\theta)$ gets more accurate</p>
 					</section>
 					<section>
-						<h3>Graphs are a more concise form of contingency tables</h3>
-						<p>insert sample table and graph here</p>
-					</section>
-					<section>
-						<h3>This is a hierarchical baysian model</h3>
+						<h3>This is a hierarchical Bayesian model</h3>
 						<p>You collect observations to "fit" the probability distribution of each node</p>
 						<p>The less flexibility in your model, the less data you need</p>
 					</section>
 					<section>
-						<h3>Making hieirarchical baysian models</h3>
-						<p>Use a library</p>
-						<p>PyMC3...</p>
+						<h3>Probabilistic Programming</h3>
+						<ul>
+							<li>Our model is probability distribution, from which we can draw samples</li>
+							<li>We can generalize beyond a DAG</li>
+							<li>You've probably done this before...</li>
+						</ul>
 					</section>
 					<section>
-						<h3>Probabalistic Programming</h3>
-						<p>Our model is probability distibution, from which we can draw samples</p>
-						<p>We can generalize beyond a DAG</p>
+						<h3>Probabilistic Programming</h3>
+						<ul>
+							<li>Generally, we make a probabilistic program with some free parameters</li>
+							<li>We estimate the output distribution of the program</li>
+							<li>Then we use an optimizer to tweak the free parameters to match our data!</li>
+						</ul>
 					</section>
-
+					<section>
+						<h3>Why do we care?</h3>
+						<ul>
+							<li>We can build complex models that are hard to translate into existing ML structures</li>
+							<li>This lets us use less data and training time, by integrating our expert knowledge!</li>
+							<li>Lots of existing research, libraries and languages for building distributions and estimating the output</li>
+						</ul>
+						<table>
+							<tr>
+								<td>
+									<img src="rocket_burn_time.png"></img>
+								</td>
+								<td>
+									<img src="rocket_burn_variation.png"></img>
+								</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h3>How do you use it?</h3>
+						<ul>
+							<li><b>Church</b> LISP-y, made for cognitive science, designed to be easy to model "human" cognition, VERY alpha-state</li>
+							<li><b>PyMC3</b> Library for python, handles DAGs easily and efficiently</li>
+							<li><b>WebPPL</b> Subset of javascript, probably the best for general usage</li>
+						</ul>
+					</section>
 				</section>
 
 				<section>
 					<section>
-						Geometric approach
+						<h2>Neural Networks and Computational Graphs</h2>
 					</section>
 					<section>
-						Core assumption: Our data lives in some lower-dimensional manifold in higher-dimensional space.</br>
-						The goal of our ML system is to discover and reverse this embedding, letting us examing and work the data in its "true" form.
+						<p>We can view these techniques as <i>computational graphs</i></p>
+						<img src="nn1.png"></img>
 					</section>
 					<section>
-						Swiss roll picture
-						Sample output picture
+						<h3>Traditional neural networks</h3>
+						<ul>
+							<li>Each layer has a weight matrix $W$ which scales and sums the outputs of the previous layer</li>
+							<li>In probabilistic programming terms, these $W$s are the part we optimize</li>
+							<li>Things we don't change during training are called <i>hyperparameters</i></li>
+						</ul>
 					</section>
 					<section>
-						Example of the layers in the neural network as it does its thing in 2D
+						<p>Each neuron has a non-linear response to the weighted sum</p>
+						<table>
+							<tr>
+								<td>
+									<img src="step.png"></img>
+								</td>
+								<td>
+									<img src="sigmoid.png"></img>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<img src="tanh.png"></img>
+								</td>
+								<td>
+									<img src="relu.png"></img>
+								</td>
+							</tr>
+						</table>
 					</section>
 					<section>
-						Autoencoders
+						<h3>How does our neural network adapt to this problem?</h3>
+						<img src="step0.png"></img>
+					</section>
+					<section>
+						<img src="nns1.png"></img>
+						<table>
+							<tr>
+								<td>
+									<img src="step0.png"></img>
+								</td>
+								<td>
+									<img src="step1.png"></img>
+								</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<img src="nns2.png"></img>
+						<table>
+							<tr>
+								<td>
+									<img src="step1.png"></img>
+								</td>
+								<td>
+									<img src="step2.png"></img>
+								</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<img src="nns3.png"></img>
+						<table>
+							<tr>
+								<td>
+									<img src="step2.png"></img>
+								</td>
+								<td>
+									<img src="step3.png"></img>
+								</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<img src="nns4.png"></img>
+						<table>
+							<tr>
+								<td>
+									<img src="step3.png"></img>
+								</td>
+								<td>
+									<img src="step4.png"></img>
+								</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h3>Can our neural network deal with this?</h3>
+						<img src="ring.png"></img>
+						<p class="fragment">How could we make it work?</p>
+					</section>
+					<section>
+						<h3>Deep learning</h3>
+						<p>Just has a lot of big layers ¯\_(ツ)_/¯</p>
+						<img src="deep.png"></img>
+					</section>
+					<section>
+						<h3>Convolutional Neural Networks</h3>
+						<p>During training, we tweak <i>convolutional kernels</i> that capture key features of our 2-D data</p>
+						<table>
+							<tr>
+								<td>
+									<img src="conv.gif"></img>
+								</td>
+								<td>
+									<img src="conv_kernle.png"></img>
+								</td>
+							</tr>
+						</table>
+						<p style="font-size:20%;">https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/</p>
+					</section>
+					<section>
+						<h3>Long Short Term Memory</h3>
+						<p>Each neuron has a feedback loop, so it can remember previous examples</p>
+						<img src="lstm.png" height="80%" width="80%"></img>
+						<p style="font-size:20%;">By BiObserver - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=43992484</p>
+					</section>
+					<section>
+						<h3>Autoencoders</h3>
+						<img src="fflab-ae.png" height="70%" width="70%"></img>
+						<img src="mnist.png" height="50%" width="50%"></img>
+						<p style="font-size:20%;">http://blog.fastforwardlabs.com/post/148842796218/introducing-variational-autoencoders-in-prose-and</p>
+					</section>
+					<section>
+						<h3>How do we examine the hidden layer?</h3>
+						<img src="ffl-hidden.png"></p>
+						<p style="font-size:20%;">http://blog.fastforwardlabs.com/post/148842796218/introducing-variational-autoencoders-in-prose-and</p>
+					</section>
+					<section>
+						<h3>We can watch it learn :)</h3>
+						<table>
+							<tr>
+								<td>
+									<img src="ffl-train-e.gif"></p>
+								</td>
+								<td>
+									<img src="ffl-train-d.gif"></p>
+								</td>
+							</tr>
+						</table>
+						<p style="font-size:20%;">http://blog.fastforwardlabs.com/post/148842796218/introducing-variational-autoencoders-in-prose-and</p>
+					</section>
+					<section>
+						<h3>My Plan</h3>
+						<p>Have lots of descriptions of "good" design software, and train the system to produce text with similar product features</p>
+						<p>Treat design principles as conditional probabilities over sets of features, and hope the latent space picks up on that</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>How do you use this stuff?</h3>
+					</section>
+					<section>
+						<h3>Start by thinking about it probabilistically</h3>
+						<p>What is your $X$? What are your $\theta$s?</p>
+						<ul>
+							<li>What features are you trying to predict from new observations?</li>
+							<li>Do you have a source for data with the "correct" predictions already?</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Should you use probabilistic programming?</h3>
+						<p>Does your statistical model have a lot of known structure/dependence?</p>
+						<ul>
+							<li>If it has feedback between variables, use WebPPL</li>
+							<li>If it doesn't, use PyMC3</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Consider the problem geometrically</h3>
+						<ul>
+							<li>How many dimensions are in the input and output?</li>
+							<li>How do you turn your data into vectors?</li>
+							<li>How dense does your data need to be?</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Use Tensorflow</h3>
+						<p>Fast, lots of examples, backed by Google</p>
+						<ul>
+							<li>If you have dense, 2D data, use a CNN</li>
+							<li>If you have sequential data, use an LSTM</li>
+							<li>If you want to discover latent variables or generate new examples, use a GAN or Autoencoder</li>
+						</ul>
+					</section>
+					<section>
+						<ol>
+							<li>Get a lot of data</li>
+							<li>Convert it to a vector</li>
+							<li>Visually inspect some plots of the data to look for patterns or problems</li>
+							<li>Train your ML system on 80% of the data</li>
+							<li>Check its performance on the other 20% of the data</li>
+							<li>Use t-SNE to look at clusters in the output.  Do they seem sensible?</li>
+							<li>If not, play with the hyperparameters</li>
+						</ol>
+					</section>
+					<section>
+						<p>Links!</p>
+						<ul>
+							<li><a href="http://scs.ryerson.ca/~aharley/vis/conv/flat.html">Interactive visualization of CNN for MNIST</a></li>
+							<li><a href="http://blog.fastforwardlabs.com/post/148842796218/introducing-variational-autoencoders-in-prose-and">Nice introduction to autoencoders</a></li>
+							<li><a href="http://www.asimovinstitute.org/neural-network-zoo/">Fast overview of different NN topologies</a></li>
+							<li><a href="https://www.tensorflow.org/">Tensorflow</a></li>
+							<li><a href="http://playground.tensorflow.org/">Tensorflow Playground</a></li>
+							<li><a href="http://pymc-devs.github.io/pymc3/">PyMC3</a></li>
+							<li><a href="http://webppl.org/">WebPPL</a></li>
+							<li><a href="http://www.bioinfo.org.cn/~casp/temp/DeepLearning.pdf">Intro paper for Deep Learning</a></li>
+						</ul>
 					</section>
 				</section>
 			</div>
