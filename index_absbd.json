@@ -1,0 +1,2 @@
+{"dependencies":"*absbd.json",
+"run":"python home_builder.py {configs}"}

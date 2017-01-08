@@ -64,6 +64,7 @@
 <p>I was really pleased with the ease design of the wireless libraries. It took some debugging for wireless, as my network was spotty, but it is trivial to send POST or GET requests to a server, once the node is up and running. Those functions failed in sensible ways, dropping the attempt if the network was unreachable. My greatest problem with the nodeMCU was its serial timeout. In order to avoid a problem analogous to the IDE starvation in the esquilo, the NodeMCU will crash and restart if it is unresponsive over serial for a long enough time. The problem is, error message upon that crash is incredibly difficult to understand. This also means your code can't depend on any long-running loops. Instead, it should use callbacks, timers, and short, simple functions.</p>
 <p>Given the low price, callback-oriented nature, and ease of hitting outside servers, I recommend the NodeMCU for situations where you are performing simple I/O operations, in particular gathering data from popular sensor models, and want a lot of boards-say one board per sensor.</p>
 
+</div>
 <div class="footer">
   <hr/>
   Made by David Anderson, 2016

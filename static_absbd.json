@@ -1,0 +1,1 @@
+{"summary":{"type":"static","run":"python pandoc-templater.py {loc}"}}

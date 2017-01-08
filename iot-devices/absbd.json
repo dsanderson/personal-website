@@ -1,0 +1,3 @@
+{"summary":{"title":"IoT Devices I've Tried","description":"My life just isn't connected *enough* yet, so I screw around with various IoT boards and systems.  Here I'll try to keep my running thoughts about them.",
+  "type":"article","catagory":["programming","iot"],"link":"/iot-devices","published":1483027200},
+"run":"python pandoc-templater.py {loc}"}

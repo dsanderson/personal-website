@@ -1,0 +1,3 @@
+{"summary":{"title":"Cool Robot Stuff","description":"A seldom-updated list of cool robots and robot stuff.",
+  "type":"article","catagory":["robots"],"link":"/robot-links","published":1472659200},
+"run":"python pandoc-templater.py {loc}"}

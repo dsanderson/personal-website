@@ -1,0 +1,3 @@
+{"summary":{"title":"Design Thinking","description":"For a lab project, we all had to write up our approach to design.  Here's my take on it, with a focus on my core concepts.",
+  "type":"article","catagory":["design","research"],"link":"/design-thinking","published":1483804800},
+"run":"python pandoc-templater.py {loc}"}

@@ -1,0 +1,3 @@
+{"summary":{"title":"Twitter Link Aggregator","description":"I like robots and hate social media, so I worte a scraper that aggregates the most popular links about robots on twitter.",
+  "type":"article","catagory":["programming","info management"],"link":"/twitter-link-bot","published":1472659200},
+"run":"python pandoc-templater.py {loc}"}

@@ -4,7 +4,7 @@
   max-width:650px;
   line-height:1.6;
   font-size:18px;
-  color:#424242;
+  color:#000;
   padding:0 10px;
   font-family: 'Lato', sans-serif;
 }
@@ -19,6 +19,6 @@ pre>code {
 }
 
 img{
-    width:100%;
-    max-width:inherit;
+    width:80%;
+    max-width:80%;
 }
