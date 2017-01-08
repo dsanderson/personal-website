@@ -1,0 +1,3 @@
+{"summary":{"title":"A Better Site By Design","description":"Why use something elegant and reliable, when you can build a terrible implementation yourself?",
+  "type":"article","catagory":["programming"],"link":"/this-site","published":1483886541},
+"run":"python pandoc-templater.py {loc}"}

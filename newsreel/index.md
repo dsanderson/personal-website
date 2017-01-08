@@ -1,0 +1,7 @@
+# Newsreel
+
+This will be a short post, but as I mentioned in my heads up display article, I've always been interested in getting more information, faster, whether to analyze my own reading habits or to summarize and present news to myself in a more digestible format.  One common sticking point for these projects, however, is the act of collecting, parsing and storing the news for later use.
+
+I was pretty happy, then, to discover the [Newspaper](https://pypi.python.org/pypi/newspaper) package for python.  This package is pretty incredible; given a url, it will either scrape out all the linked articles, if the url points to a listing (like cnn.com), or will scrape and parse a single news article, pulling out features such as the title, author, dates and text content.  The package more than met my needs for collecting and parsing news.  However, storage was still and issue.
+
+So I wrote [newsreel](https://github.com/dsanderson/newsreel).  This tool provides a command line wrapper for adding sources to a master list, and executing scrapes over that list, storing each article in a specified database.  This enables periodic scraping via a cron job, easy extensibility, and allows other scripts to tap into the database for up to date and historical news information.  My brother is using this in one of his projects already, and I'm working on two projects of my own that make use of it, which I will hopefully post shortly.  In the meantime, I hope others can find some use for this tool.

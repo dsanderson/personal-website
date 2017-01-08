@@ -1,0 +1,3 @@
+{"summary":{"title":"Newsreel","description":"Because reading news yourself is so 2016.",
+  "type":"article","catagory":["programming","info management"],"link":"/newsreel","published":1483886542},
+"run":"python pandoc-templater.py {loc}"}
