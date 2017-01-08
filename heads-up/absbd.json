@@ -1,0 +1,3 @@
+{"summary":{"title":"Heads Up Display","description":"I backer a kickstarter making glasses-mounted HDMI screens, and am using that as the basis for the bulkiest mobile computing setup this side of 1995.",
+  "type":"article","catagory":["programming","info management","wearables"],"link":"/heads-up","published":1483027200},
+"run":"python pandoc-templater.py {loc}"}
