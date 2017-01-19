@@ -4,11 +4,22 @@ display.attr('width',d_width);
 display.attr('height',d_height);
 
 var data;
-d3.csv("ferris.csv",function(d) {
+d3.json("/flask/ferris/sensor/fridge2",function(d) {
   data = d;
-  draw_display();
-  draw_timer(beer_data);
+  d3.json("/flask/ferris/sensor/icebox1",function(d) {
+    data = data+d;
+    d3.json("/flask/ferris/sensor/setpoint",function(d) {
+      data = data+d;
+      d3.json("/flask/ferris/sensor/compState",function(d) {
+        comp_data=d;
+        draw_display();
+      });
+    });
+  });
 });
+/*
+draw_display();
+draw_timer(beer_data); */
 //console.log(data);
 
 var beer_data = {'name':"Czech Czillsner", 'endtime':1460088000*1000,
@@ -42,19 +53,19 @@ function draw_display() {
   });*/
   temps_fridge = data.filter(function(e,i,a) {
     //return e["sensor"] == 'Fridge Temperature Avg';
-    return (e["sensor"] == 'Fridge Temperature 1') || (e["sensor"] == 'Fridge Temperature Avg');
+    return (e["name"] == 'fridge2');
   });
   //state_controller = states_controller[states_controller.length-1];
   temp_fridge = temps_fridge[temps_fridge.length-1];
   //last_time = d3.max([state_controller['time'],temp_fridge['time']]);
-  last_time = d3.max([temp_fridge['time']]);
+  last_time = temp_fridge['time'];
   time_fmt = d3.time.format("%c")
   d3.select('#update-time').text('Last Updated '+time_fmt(last_time));
   //console.log(last_time);
   //console.log(time_fmt(new Date(+last_time)));
   var col = 'Springgreen';
   d3.select('#fridge-temp').text(temp_fridge['value'].toString()).attr('style','color:'+col);
-  //d3.select('#controller-state').text(state_controller['value'].toString()).attr('style','color:'+col);
+  d3.select('#controller-state').text(comp_data[comp_data.length-1]['value'].toString()).attr('style','color:'+col);
 
 
   //add timer for beer readiness
@@ -90,7 +101,7 @@ function draw_display() {
     .interpolate('linear');
 
   x.domain(d3.extent(data, function(d) { return d.time; }));
-  fridgeY.domain(d3.extent(temps_fridge, function(d) { return +d.value; }));
+  fridgeY.domain(d3.extent(data, function(d) { return +d.value; }));
 
   fridgeGroup.append('g').attr('class','x axis')
     .attr('transform','translate(0,'+height+')')
@@ -112,49 +123,22 @@ function draw_display() {
     .attr('id','fridgeline')
     .attr('d',fridgeLine);
 
+  function get_color(d) {
+    if (d.name==="fridge2") {return d3.rgb(1.0,0.0,0.0)};
+    if (d.name==="icebox1") {return d3.rgb(0.0,0.0,1.0)};
+    if (d.name==="setpoint") {return d3.rgb(0.0,1.0,0.0)};
+    return d3.rgb(0.0,0.0,0.0);
+  };
+
+  fridgeGroup.selectAll('.scatter').data(data).enter()
+    .append("circle")
+    .attr("class", "dot")
+    .attr("r",3.5)
+    .attr("cx", function(d) {return x(+d.time)})
+    .attr("cy", function(d) {return fridgeY(+d.value)})
+    .style("fill", function(d) {return get_color(d)});
+
   fridgeGroup.attr('transform','translate('+padding.left+','+padding.top+')');
-
-  //add the plot for the freezer just below
-  /*
-  var controllerGroup = d3.select('#controllergroup');
-
-  var controllerY = d3.scale.linear()
-      .range([height, 0]);
-
-  var controllerYAxis = d3.svg.axis()
-      .scale(controllerY)
-      .orient("left");
-
-  var controllerLine = d3.svg.line()
-    .x(function(d) { return x(d.time); })
-    .y(function(d) { return controllerY(+d.value); })
-    .interpolate('linear');
-
-  x.domain(d3.extent(data, function(d) { return d.time; }));
-  controllerY.domain(d3.extent(states_controller, function(d) { return +d.value; }));
-
-  controllerGroup.append('g').attr('class','x axis')
-    .attr('transform','translate(0,'+height+')')
-    .call(xAxis);
-
-  controllerGroup.append('g').attr('class','y axis')
-    .attr('transform','translate(0,0)')
-    .call(controllerYAxis)
-    .append("text")
-    //.attr("transform", "rotate(-90)")
-    .attr('transform','translate(5,-5)')
-    .attr("y", 6)
-    .attr("dy", ".71em")
-    .style("text-anchor", "start")
-    .text("Controller State");
-
-  controllerGroup.append('path')
-    .datum(states_controller)
-    .attr('id','controllerline')
-    .attr('d',controllerLine);
-
-  controllerGroup.attr('transform','translate('+padding.left+','+(height+padding.top+padding.bottom)+')');
-  */
 }
 
 function draw_timer(beer_data) {
