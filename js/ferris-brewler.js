@@ -30,15 +30,6 @@ function estimate_carbonation(psi,temp) {
   return 2.4;
 }
 
-function color_freezer() {
-  //calculate based on percent error on carbonation
-  return null;
-};
-
-function color_fridge() {
-  return null;
-}
-
 function draw_display() {
   // process the data in some useful ways
   data.forEach(function(d) {
@@ -95,11 +86,6 @@ function draw_display() {
       .scale(fridgeY)
       .orient("left");
 
-  var fridgeLine = d3.svg.line()
-    .x(function(d) { return x(d.time); })
-    .y(function(d) { return fridgeY(+d.value); })
-    .interpolate('linear');
-
   x.domain(d3.extent(data, function(d) { return d.time; }));
   fridgeY.domain(d3.extent(data, function(d) { return +d.value; }));
 
@@ -117,11 +103,6 @@ function draw_display() {
     .attr('transform','translate(5,-5)')
     .style("text-anchor", "start")
     .text("Fridge Temp. (C)");
-
-  fridgeGroup.append('path')
-    .datum(temps_fridge)
-    .attr('id','fridgeline')
-    .attr('d',fridgeLine);
 
   function get_color(d) {
     if (d.name==="fridge2") {return d3.rgb(1.0,0.0,0.0)};
