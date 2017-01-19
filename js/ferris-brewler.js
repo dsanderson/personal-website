@@ -106,10 +106,10 @@ function draw_display(data) {
     .text("Fridge Temp. (C)");
 
   function get_color(d) {
-    if (d.name=="fridge2") {return d3.rgb(1.0,0.0,0.0)};
-    if (d.name=="icebox1") {return d3.rgb(0.0,0.0,1.0)};
-    if (d.name=="setpoint") {return d3.rgb(0.0,1.0,0.0)};
-    return d3.rgb(0.0,0.0,0.0);
+    if (d.name=="fridge2") {return d3.rgb(1.0,0.0,0.0)}
+    else if (d.name=="icebox1") {return d3.rgb(0.0,0.0,1.0)}
+    else if (d.name=="setpoint") {return d3.rgb(0.0,1.0,0.0)}
+    else { return d3.rgb(0.0,0.0,0.0) }
   };
 
   fridgeGroup.selectAll('.scatter').data(data).enter()
