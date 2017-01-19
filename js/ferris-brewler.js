@@ -11,8 +11,9 @@ d3.json("/flask/ferris/sensor/fridge2",function(d) {
     d3.json("/flask/ferris/sensor/setpoint",function(d) {
       data = data+d;
       d3.json("/flask/ferris/sensor/compState",function(d) {
+        data = data
         comp_data=d;
-        draw_display();
+        draw_display(data);
       });
     });
   });
@@ -30,7 +31,7 @@ function estimate_carbonation(psi,temp) {
   return 2.4;
 }
 
-function draw_display() {
+function draw_display(data) {
   // process the data in some useful ways
   data.forEach(function(d) {
     d.time = new Date(+d.time*1000);
