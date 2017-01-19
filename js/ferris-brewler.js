@@ -7,9 +7,9 @@ var data;
 d3.json("/flask/ferris/sensor/fridge2",function(d) {
   data = d;
   d3.json("/flask/ferris/sensor/icebox1",function(d) {
-    data = data+d;
+    data = data.concat(d);
     d3.json("/flask/ferris/sensor/setpoint",function(d) {
-      data = data+d;
+      data = data.concat(d);
       d3.json("/flask/ferris/sensor/compState",function(d) {
         data = data
         comp_data=d;
