@@ -66,7 +66,7 @@ function draw_display(data) {
   //add plot for refrigerator temperature
   var fridgeGroup = d3.select('#fridgegroup');
   var padding = {'top':50,'left':50,'right':50,'bottom':50};
-  var height = 200;
+  var height = 600;
   var width = 1000;
 
   d3.select('#plots-svg')
@@ -106,9 +106,9 @@ function draw_display(data) {
     .text("Fridge Temp. (C)");
 
   function get_color(d) {
-    if (d.name==="fridge2") {return d3.rgb(1.0,0.0,0.0)};
-    if (d.name==="icebox1") {return d3.rgb(0.0,0.0,1.0)};
-    if (d.name==="setpoint") {return d3.rgb(0.0,1.0,0.0)};
+    if (d.name=="fridge2") {return d3.rgb(1.0,0.0,0.0)};
+    if (d.name=="icebox1") {return d3.rgb(0.0,0.0,1.0)};
+    if (d.name=="setpoint") {return d3.rgb(0.0,1.0,0.0)};
     return d3.rgb(0.0,0.0,0.0);
   };
 
@@ -116,7 +116,7 @@ function draw_display(data) {
     .append("circle")
     .attr("class", "dot")
     .attr("r",3.5)
-    .attr("cx", function(d) {return x(+d.time)})
+    .attr("cx", function(d) {return x(d.time)})
     .attr("cy", function(d) {return fridgeY(+d.value)})
     .style("fill", function(d) {return get_color(d)});
 
