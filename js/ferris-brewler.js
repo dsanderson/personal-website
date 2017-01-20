@@ -101,7 +101,7 @@ function draw_display() {
     .attr("dy", ".71em")
     .attr('transform','translate(5,-5)')
     .style("text-anchor", "start")
-    .text("Temperature (C)");
+    .text("Temperature (C)")
     .append("text")
     //.attr("transform", "rotate(-90)")
     .attr("y", 6)
