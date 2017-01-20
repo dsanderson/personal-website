@@ -60,8 +60,8 @@ function draw_display(data) {
 
   //add plots
   var padding = {'top':50,'left':50,'right':50,'bottom':50};
-  var height = Math.floor(window.innerHeight*0.5);
-  var width = Math.floor(window.innerWidth*0.95);
+  var height = Math.floor(window.innerHeight*0.5)-padding.top-padding.bottom;
+  var width = Math.floor(window.innerWidth*0.95)-padding.left-padding.right;
   //delete all the old data in the plot, prior to new processing
 
   d3.select('#plots-svg')
@@ -121,7 +121,7 @@ function draw_display(data) {
   fridgeGroup.selectAll('.scatter').data(data).enter()
     .append("circle")
     .attr("class", "dot")
-    .attr("r",3.5)
+    .attr("r",1.5)
     .attr("cx", function(d) {return x(d.time)})
     .attr("cy", function(d) {return fridgeY(+d.value)})
     .style("fill", function(d) {return get_color(d)});

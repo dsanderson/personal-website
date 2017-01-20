@@ -6,11 +6,11 @@
 }
 
 .axis {
-  stroke: #000;
+  stroke: #FFF;
 }
 
 .axis text {
-  fill: #000;
+  fill: #FFF;
 }
 
 .x.axis path {
@@ -51,12 +51,12 @@
 }
 
 #update-time {
-  color: #000;
+  color: #FFF;
 }
 
 #current-timer-text {
-  stroke: #000;
-  fill: #000;
+  stroke: #FFF;
+  fill: #FFF;
   font-family: 'Lato',sans-serif;
 }
 
@@ -65,7 +65,7 @@
 }
 
 body {
-  color: #000;
-  background-color: #FFF;
+  color: #FFF;
+  background-color: #000;
   font-family: 'Lato',sans-serif;
 }
