@@ -52,8 +52,8 @@ function draw_display() {
   //console.log(last_time);
   //console.log(time_fmt(new Date(+last_time)));
   var col = get_color("setpoint");
-  d3.select('#fridge-temp').text(temp_fridge['value'].toString()).attr('style','color:'+col);
-  d3.select('#controller-state').text(comp_data[comp_data.length-1]['value'].toString()).attr('style','color:'+col);
+  d3.select('#fridge-temp').text(temp_fridge['value'].toString()).style('color',col);
+  d3.select('#controller-state').text(comp_data[comp_data.length-1]['value'].toString()).style('color',col);
 
   //add plots
   var padding = {'top':50,'left':50,'right':50,'bottom':50};
@@ -97,7 +97,7 @@ function draw_display() {
     .call(fridgeYAxis);
   var axis_y = d3.select(".y");
   axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,-5)').style("text-anchor", "start").text("Temperature (C)");
-  axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,-6)').style("text-anchor", "start").text("Fridge").style("fill", get_color("fridge2"));
+  axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,10)').style("text-anchor", "start").text("Fridge").style("fill", get_color("fridge2"));
   function get_color(d) {
     if (d.name=="fridge2") {
       return d3.rgb(255,77,116);
