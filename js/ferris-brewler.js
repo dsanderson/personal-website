@@ -6,6 +6,13 @@ d3.json("/flask/ferris/sensor/fridge2",function(d) {
     window.data = window.data.concat(d);
     d3.json("/flask/ferris/sensor/setpoint",function(d) {
       window.data = window.data.concat(d);
+      window.data.forEach(function(d) {
+        d.time = new Date(+d.time*1000);
+      });
+      //clamp data values, to reduce impact of noise.  Assume proper temp should never go above 40 degrees C
+      window.data.forEach(function(d) {
+        d.value = (d.value <= 40 ? d.value : 40);
+      });
       d3.json("/flask/ferris/sensor/compState",function(d) {
         comp_data=d;
         draw_display();
@@ -30,9 +37,7 @@ function estimate_carbonation(psi,temp) {
 function draw_display() {
   // process the data in some useful ways
   data = window.data;
-  data.forEach(function(d) {
-    d.time = new Date(+d.time*1000);
-  });
+
   // console.log(data);
   //extract the fridge & freezer data, as well as the current time
   //console.log(data);
@@ -55,11 +60,6 @@ function draw_display() {
   var col = 'Springgreen';
   d3.select('#fridge-temp').text(temp_fridge['value'].toString()).attr('style','color:'+col);
   d3.select('#controller-state').text(comp_data[comp_data.length-1]['value'].toString()).attr('style','color:'+col);
-
-  //clamp data values, to reduce impact of noise.  Assume proper temp should never go above 40 degrees C
-  data = data.forEach(function(d) {
-    d.value = (d.value <= 40 ? d.value : 40);
-  });
 
   //add plots
   var padding = {'top':50,'left':50,'right':50,'bottom':50};
