@@ -1,4 +1,4 @@
-var window.data = [];
+window.data = [];
 d3.json("/flask/ferris/sensor/fridge2",function(d) {
   var data = d;
   d3.json("/flask/ferris/sensor/icebox1",function(d) {
