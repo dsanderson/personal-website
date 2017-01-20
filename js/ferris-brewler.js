@@ -51,7 +51,7 @@ function draw_display() {
   d3.select('#update-time').text('Last Updated '+time_fmt(last_time));
   //console.log(last_time);
   //console.log(time_fmt(new Date(+last_time)));
-  var col = 'Springgreen';
+  var col = get_color("setpoint");
   d3.select('#fridge-temp').text(temp_fridge['value'].toString()).attr('style','color:'+col);
   d3.select('#controller-state').text(comp_data[comp_data.length-1]['value'].toString()).attr('style','color:'+col);
 
@@ -95,7 +95,7 @@ function draw_display() {
   fridgeGroup.append('g').attr('class','y axis')
     .attr('transform','translate(0,0)')
     .call(fridgeYAxis);
-  var axis_y = d3.select(".y .axis");
+  var axis_y = d3.select(".y");
   axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,-5)').style("text-anchor", "start").text("Temperature (C)");
   axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,-6)').style("text-anchor", "start").text("Fridge").style("fill", get_color("fridge2"));
   function get_color(d) {
