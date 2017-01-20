@@ -51,7 +51,7 @@ function draw_display() {
   d3.select('#update-time').text('Last Updated '+time_fmt(last_time));
   //console.log(last_time);
   //console.log(time_fmt(new Date(+last_time)));
-  var col = get_color("setpoint");
+  var col = get_color({"name":"setpoint"});
   d3.select('#fridge-temp').text(temp_fridge['value'].toString()).style('color',col);
   d3.select('#controller-state').text(comp_data[comp_data.length-1]['value'].toString()).style('color',col);
 
@@ -96,8 +96,6 @@ function draw_display() {
     .attr('transform','translate(0,0)')
     .call(fridgeYAxis);
   var axis_y = d3.select(".y");
-  axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,-5)').style("text-anchor", "start").text("Temperature (C)");
-  axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,10)').style("text-anchor", "start").text("Fridge").style("fill", get_color("fridge2"));
   function get_color(d) {
     if (d.name=="fridge2") {
       return d3.rgb(255,77,116);
@@ -118,6 +116,11 @@ function draw_display() {
     .attr("cy", function(d) {return fridgeY(+d.value)})
     .style("fill", function(d) {return get_color(d)});
 
+  axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,-5)').style("text-anchor", "start").text("Temperature (C)");
+  axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,10)').style("text-anchor", "start").text("Fridge").style("fill", get_color({"name":"fridge2"}));
+  axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,25)').style("text-anchor", "start").text("Setpoint").style("fill", get_color({"name":"setpoint"}));
+  axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,40)').style("text-anchor", "start").text("Freezer").style("fill", get_color({"name":"icebox1"}));
+  
   fridgeGroup.attr('transform','translate('+padding.left+','+padding.top+')');
 };
 
