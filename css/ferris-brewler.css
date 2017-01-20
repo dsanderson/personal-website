@@ -57,7 +57,11 @@
 #current-timer-text {
   stroke: #000;
   fill: #000;
-  font-family: sans-serif;
+  font-family: 'Lato',sans-serif;
+}
+
+#brew {
+  font-family: 'Raleway',sans-serif;
 }
 
 body {

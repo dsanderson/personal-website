@@ -1,8 +1,3 @@
-var display = d3.select("#current-svg");
-var d_height = 300, d_width = 800;
-display.attr('width',d_width);
-display.attr('height',d_height);
-
 var data;
 d3.json("/flask/ferris/sensor/fridge2",function(d) {
   data = d;
@@ -11,9 +6,10 @@ d3.json("/flask/ferris/sensor/fridge2",function(d) {
     d3.json("/flask/ferris/sensor/setpoint",function(d) {
       data = data.concat(d);
       d3.json("/flask/ferris/sensor/compState",function(d) {
-        data = data
+        data = data;
         comp_data=d;
         draw_display(data);
+        draw_timer(beer_data);
       });
     });
   });
@@ -23,8 +19,8 @@ draw_display();
 draw_timer(beer_data); */
 //console.log(data);
 
-var beer_data = {'name':"Czech Czillsner", 'endtime':1460088000*1000,
-  'starttime':1458878400*1000, 'PSI':14.0, 'carbonation':2.48};
+var beer_data = {'name':"Cans, Waiting to Start Brew...", 'endtime':1485100800*1000,
+  'starttime':1484755200*1000, 'PSI':"-", 'carbonation':"-"};
 
 function estimate_carbonation(psi,temp) {
   //TODO add real estimate
@@ -63,15 +59,14 @@ function draw_display(data) {
   //add timer for beer readiness
 
   //add plots
-  //add plot for refrigerator temperature
-  var fridgeGroup = d3.select('#fridgegroup');
   var padding = {'top':50,'left':50,'right':50,'bottom':50};
   var height = 600;
   var width = 1000;
+  //delete all the old data in the plot, prior to new processing
 
   d3.select('#plots-svg')
     .attr('width',width+padding.left+padding.right)
-    .attr('height',(height+padding.top+padding.bottom)*2);
+    .attr('height',height+padding.top+padding.bottom);
 
   var x = d3.time.scale()
     .range([0, width]);
@@ -89,6 +84,12 @@ function draw_display(data) {
 
   x.domain(d3.extent(data, function(d) { return d.time; }));
   fridgeY.domain(d3.extent(data, function(d) { return +d.value; }));
+
+
+  //add plot for refrigerator temperature
+  //remove the old data
+  d3.select('#plots-svg').selectAll("g").remove()
+  var fridgeGroup = d3.select('#plots-svg').append("g");
 
   fridgeGroup.append('g').attr('class','x axis')
     .attr('transform','translate(0,'+height+')')
