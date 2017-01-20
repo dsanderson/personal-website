@@ -1,12 +1,12 @@
-var data = [];
+window.data = [];
 d3.json("/flask/ferris/sensor/fridge2",function(d) {
   var data = d;
+  window.data = data
   d3.json("/flask/ferris/sensor/icebox1",function(d) {
-    data = data.concat(d);
+    window.data = window.data.concat(d);
     d3.json("/flask/ferris/sensor/setpoint",function(d) {
-      data = data.concat(d);
+      window.data = window.data.concat(d);
       d3.json("/flask/ferris/sensor/compState",function(d) {
-        data = data;
         comp_data=d;
         draw_display();
         draw_timer(beer_data);
@@ -29,6 +29,7 @@ function estimate_carbonation(psi,temp) {
 
 function draw_display() {
   // process the data in some useful ways
+  data = window.data;
   data.forEach(function(d) {
     d.time = new Date(+d.time*1000);
   });
