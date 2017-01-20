@@ -7,7 +7,8 @@ function load_and_render() {
       d3.json("/flask/ferris/sensor/setpoint",function(d) {
         window.data = window.data.concat(d);
         window.data.forEach(function(d) {
-          d.time = new Date(+d.time*1000);
+          //we create a date object, and brute-force subtract 5 hours to match the singapore TZ TODO fix tz issues
+          d.time = new Date((+d.time*1000)-(5*60*60*1000));
         });
         //clamp data values, to reduce impact of noise.  Assume proper temp should never go above 40 degrees C
         window.data.forEach(function(d) {
@@ -120,7 +121,7 @@ function draw_display() {
   axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,10)').style("text-anchor", "start").text("Fridge").style("fill", get_color({"name":"fridge2"}));
   axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,25)').style("text-anchor", "start").text("Setpoint").style("fill", get_color({"name":"setpoint"}));
   axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,40)').style("text-anchor", "start").text("Freezer").style("fill", get_color({"name":"icebox1"}));
-  
+
   fridgeGroup.attr('transform','translate('+padding.left+','+padding.top+')');
 };
 
