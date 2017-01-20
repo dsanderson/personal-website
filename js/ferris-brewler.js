@@ -1,38 +1,32 @@
-window.data = [];
-d3.json("/flask/ferris/sensor/fridge2",function(d) {
-  var data = d;
-  window.data = data
-  d3.json("/flask/ferris/sensor/icebox1",function(d) {
-    window.data = window.data.concat(d);
-    d3.json("/flask/ferris/sensor/setpoint",function(d) {
+function load_and_render() {
+  d3.json("/flask/ferris/sensor/fridge2",function(d) {
+    var data = d;
+    window.data = data
+    d3.json("/flask/ferris/sensor/icebox1",function(d) {
       window.data = window.data.concat(d);
-      window.data.forEach(function(d) {
-        d.time = new Date(+d.time*1000);
-      });
-      //clamp data values, to reduce impact of noise.  Assume proper temp should never go above 40 degrees C
-      window.data.forEach(function(d) {
-        d.value = (d.value <= 40 ? d.value : 40);
-      });
-      d3.json("/flask/ferris/sensor/compState",function(d) {
-        comp_data=d;
-        draw_display();
-        draw_timer(beer_data);
+      d3.json("/flask/ferris/sensor/setpoint",function(d) {
+        window.data = window.data.concat(d);
+        window.data.forEach(function(d) {
+          d.time = new Date(+d.time*1000);
+        });
+        //clamp data values, to reduce impact of noise.  Assume proper temp should never go above 40 degrees C
+        window.data.forEach(function(d) {
+          d.value = (d.value <= 40 ? d.value : 40);
+        });
+        d3.json("/flask/ferris/sensor/compState",function(d) {
+          comp_data=d;
+          draw_display();
+          draw_timer(beer_data);
+        });
       });
     });
   });
-});
-/*
-draw_display();
-draw_timer(beer_data); */
-//console.log(data);
-
-var beer_data = {'name':"Cans, Waiting to Start Brew...", 'endtime':1485100800*1000,
-  'starttime':1484755200*1000, 'PSI':"-", 'carbonation':"-"};
+};
 
 function estimate_carbonation(psi,temp) {
   //TODO add real estimate
   return 2.4;
-}
+};
 
 function draw_display() {
   // process the data in some useful ways
@@ -130,7 +124,7 @@ function draw_display() {
     .style("fill", function(d) {return get_color(d)});
 
   fridgeGroup.attr('transform','translate('+padding.left+','+padding.top+')');
-}
+};
 
 function draw_timer(beer_data) {
   var height=125;
@@ -170,4 +164,12 @@ function draw_timer(beer_data) {
     .attr('id','timer-arc')
     .attr('d',arc)
     .attr('transform','translate('+width/2+padding+','+height/2+padding+')');
-}
+};
+
+
+var beer_data = {'name':"Cans, Waiting to Start...", 'endtime':1485100800*1000,
+  'starttime':1484755200*1000, 'PSI':"-", 'carbonation':"-"};
+window.data = [];
+load_and_render();
+//create a timer to refresh the data every 35 seconds
+var intervalID = window.setInterval(load_and_render, 35000);
