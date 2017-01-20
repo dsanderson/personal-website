@@ -94,29 +94,17 @@ function draw_display() {
 
   fridgeGroup.append('g').attr('class','y axis')
     .attr('transform','translate(0,0)')
-    .call(fridgeYAxis)
-    .append("text")
-    //.attr("transform", "rotate(-90)")
-    .attr("y", 6)
-    .attr("dy", ".71em")
-    .attr('transform','translate(5,-5)')
-    .style("text-anchor", "start")
-    .text("Temperature (C)")
-    .append("text")
-    //.attr("transform", "rotate(-90)")
-    .attr("y", 6)
-    .attr("dy", ".71em")
-    .attr('transform','translate(5,-6)')
-    .style("text-anchor", "start")
-    .text("Refrigerator");
-
+    .call(fridgeYAxis);
+  var axis_y = d3.select(".y .axis");
+  axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,-5)').style("text-anchor", "start").text("Temperature (C)");
+  axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,-6)').style("text-anchor", "start").text("Fridge").style("fill", get_color("fridge2"));
   function get_color(d) {
     if (d.name=="fridge2") {
-      return d3.rgb(255.0,0.0,0.0);
+      return d3.rgb(255,77,116);
     } else if (d.name=="icebox1") {
-      return d3.rgb(0.0,0.0,255.0);
+      return d3.rgb(45,163,232);
     } else if (d.name=="setpoint") {
-      return d3.rgb(0.0,255.0,0.0);
+      return d3.rgb(95,255,153);
     } else {
       return d3.rgb(0.0,0.0,0.0);
     }
