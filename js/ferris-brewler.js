@@ -101,7 +101,14 @@ function draw_display() {
     .attr("dy", ".71em")
     .attr('transform','translate(5,-5)')
     .style("text-anchor", "start")
-    .text("Fridge Temp. (C)");
+    .text("Temperature (C)");
+    .append("text")
+    //.attr("transform", "rotate(-90)")
+    .attr("y", 6)
+    .attr("dy", ".71em")
+    .attr('transform','translate(5,-6)')
+    .style("text-anchor", "start")
+    .text("Refrigerator");
 
   function get_color(d) {
     if (d.name=="fridge2") {
@@ -146,6 +153,9 @@ function draw_timer(beer_data) {
   timestr = d.toString()+':'+h+':'+m;
 
   svg = d3.select('#current-timer');
+  //delete any old data
+  svg.select("text").remove();
+  svg.select("path").remove();
   svg.attr('width',(width+(padding*2)).toString()).attr('height',(height+(padding*2)).toString());
   svg.append('text')
     .attr('transform','translate('+width/2+padding*2+','+height/2+padding*2+15+')')
