@@ -60,8 +60,8 @@ function draw_display(data) {
 
   //add plots
   var padding = {'top':50,'left':50,'right':50,'bottom':50};
-  var height = 600;
-  var width = 1000;
+  var height = Math.floor(window.innerHeight*0.5);
+  var width = Math.floor(window.innerWidth*0.95);
   //delete all the old data in the plot, prior to new processing
 
   d3.select('#plots-svg')
