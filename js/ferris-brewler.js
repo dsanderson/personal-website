@@ -1,4 +1,4 @@
-window.data = [];
+var data = [];
 d3.json("/flask/ferris/sensor/fridge2",function(d) {
   var data = d;
   d3.json("/flask/ferris/sensor/icebox1",function(d) {
@@ -6,7 +6,7 @@ d3.json("/flask/ferris/sensor/fridge2",function(d) {
     d3.json("/flask/ferris/sensor/setpoint",function(d) {
       data = data.concat(d);
       d3.json("/flask/ferris/sensor/compState",function(d) {
-        window.data = data;
+        data = data;
         comp_data=d;
         draw_display();
         draw_timer(beer_data);
@@ -28,7 +28,6 @@ function estimate_carbonation(psi,temp) {
 }
 
 function draw_display() {
-  var data = window.data;
   // process the data in some useful ways
   data.forEach(function(d) {
     d.time = new Date(+d.time*1000);
@@ -58,7 +57,7 @@ function draw_display() {
 
   //clamp data values, to reduce impact of noise.  Assume proper temp should never go above 40 degrees C
   data = data.forEach(function(d) {
-    d.value = d.value <= 40 ? d.value : 40;
+    d.value = (d.value <= 40 ? d.value : 40);
   });
 
   //add plots
