@@ -45,7 +45,9 @@ select {
   padding: 0;
   margin-top: 5px;
   color:#FFF;
-  background-color: #102010;
+  background-color: #101013;
+  border-style: solid;
+  border-color: #131313;
 }
 
 option {
@@ -53,7 +55,7 @@ option {
   line-height:1.6;
   font-size:18px;
   color:#FFF;
-  background-color: #102010;
+  background-color: #101013;
 }
 
 button {
@@ -62,7 +64,9 @@ button {
   font-size:18px;
   margin-top: 5px;
   color:#FFF;
-  background-color: #102010;
+  background-color: #101013;
+  border-style: solid;
+  border-color: #131313;
 }
 
 .caption {
