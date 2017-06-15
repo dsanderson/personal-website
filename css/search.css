@@ -32,6 +32,8 @@ input {
   font-size:18px;
   margin-top: 5px;
   margin-right: 5px;
+  color:#FFF;
+  background-color: #102010;
 }
 
 select {
@@ -40,12 +42,16 @@ select {
   font-size:18px;
   padding: 0;
   margin-top: 5px;
+  color:#FFF;
+  background-color: #102010;
 }
 
 option {
   font-family: 'Lato', sans-serif;
   line-height:1.6;
   font-size:18px;
+  color:#FFF;
+  background-color: #102010;
 }
 
 button {
@@ -53,6 +59,8 @@ button {
   line-height:1.6;
   font-size:18px;
   margin-top: 5px;
+  color:#FFF;
+  background-color: #102010;
 }
 
 .caption {
@@ -70,4 +78,17 @@ button {
 .search {
   max-width:640px;
   margin-right: 10px;
+}
+
+a {
+  color:#DFD;
+}
+
+
+a:link {
+  color:#DFD;
+}
+
+a:visited {
+  color:#DFD;
 }
