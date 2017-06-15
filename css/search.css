@@ -28,6 +28,7 @@ img {
 input {
   border: 0;
   outline: 0;
+  padding: 0;
   background: transparent;
   border-bottom: 2px solid rgb(19,156,212);
   border-left: 1px solid rgb(19,156,212);
@@ -35,6 +36,8 @@ input {
   line-height:1.6;
   font-size:18px;
   color:#FFF;
+  margin-top: 5px;
+  margin-right: 5px;
 }
 
 select {
@@ -50,6 +53,8 @@ select {
   background: transparent;
   background-image: none;
   -webkit-appearance: none;
+  padding: 0;
+  margin-top: 5px;
 }
 
 option {
@@ -84,5 +89,6 @@ button {
 }
 
 .search {
-  max-width:600px;
+  max-width:640px;
+  margin-right: 10px;
 }
