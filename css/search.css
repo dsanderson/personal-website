@@ -1,0 +1,39 @@
+.body {
+  line-height: 1.4;
+  margin: 40px auto;
+  max-width:650px;
+  line-height:1.6;
+  font-size:18px;
+  color:#FFF;
+  background-color: #222;
+  padding:0 10px;
+  font-family: 'Lato', sans-serif;
+}
+
+h1, h2 {
+  line-height:1.2;
+  font-family: 'Raleway', sans-serif;
+}
+
+pre>code {
+  font-size:0.8;
+}
+
+img {
+    width:80%;
+    max-width:80%;
+    margin-left: 15px;
+}
+
+input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 2px solid rgb(19,156,212);
+}
+
+.caption {
+  text-align: center;
+  font-style: italic;
+  font-size: 16px;
+}
