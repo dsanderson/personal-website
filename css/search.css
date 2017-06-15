@@ -135,5 +135,6 @@ svg {
 
 .axis text {
   text-shadow: 0 1px 0 #222, 1px 0 0 #222, 0 -1px 0 #222, -1px 0 0 #222;
+  color: #FFF;
   cursor: move;
 }
