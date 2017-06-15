@@ -42,6 +42,10 @@ select {
   outline: 0;
   border-bottom: 2px solid rgb(19,156,212);
   border-right: 1px solid rgb(19,156,212);
+  font-family: 'Lato', sans-serif;
+  line-height:1.6;
+  font-size:18px;
+  color:#FFF;
   box-shadow: none;
   background: transparent;
   background-image: none;
@@ -52,7 +56,7 @@ option {
   font-family: 'Lato', sans-serif;
   line-height:1.6;
   font-size:18px;
-  color:#FFF;
+  color:#000;
 }
 
 button {
