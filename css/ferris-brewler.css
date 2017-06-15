@@ -6,11 +6,17 @@
 }
 
 .axis {
-  stroke: #000;
+  stroke: #FFF;
 }
 
 .axis text {
-  fill: #000;
+  fill: #FFF;
+}
+
+text {
+  font-family: 'Lato', sans-serif;
+  font-weight: normal;
+  stroke-width: 0.0;
 }
 
 .x.axis path {
@@ -51,17 +57,21 @@
 }
 
 #update-time {
-  color: #000;
+  color: #FFF;
 }
 
 #current-timer-text {
-  stroke: #000;
-  fill: #000;
-  font-family: sans-serif;
+  stroke: #FFF;
+  fill: #FFF;
+  font-family: 'Lato',sans-serif;
+}
+
+#brew {
+  font-family: 'Raleway',sans-serif;
 }
 
 body {
-  color: #000;
-  background-color: #FFF;
+  color: #FFF;
+  background-color: #202026;
   font-family: 'Lato',sans-serif;
 }

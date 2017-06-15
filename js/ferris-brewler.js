@@ -1,41 +1,38 @@
-var display = d3.select("#current-svg");
-var d_height = 300, d_width = 800;
-display.attr('width',d_width);
-display.attr('height',d_height);
-
-var data;
-d3.json("/flask/ferris/sensor/fridge2",function(d) {
-  data = d;
-  d3.json("/flask/ferris/sensor/icebox1",function(d) {
-    data = data.concat(d);
-    d3.json("/flask/ferris/sensor/setpoint",function(d) {
-      data = data.concat(d);
-      d3.json("/flask/ferris/sensor/compState",function(d) {
-        data = data
-        comp_data=d;
-        draw_display(data);
+function load_and_render() {
+  d3.json("/flask/ferris/sensor/fridge2",function(d) {
+    var data = d;
+    window.data = data
+    d3.json("/flask/ferris/sensor/icebox1",function(d) {
+      window.data = window.data.concat(d);
+      d3.json("/flask/ferris/sensor/setpoint",function(d) {
+        window.data = window.data.concat(d);
+        window.data.forEach(function(d) {
+          //we create a date object, and brute-force subtract 5 hours to match the singapore TZ TODO fix tz issues
+          d.time = new Date((+d.time*1000)-(5*60*60*1000));
+        });
+        //clamp data values, to reduce impact of noise.  Assume proper temp should never go above 40 degrees C
+        window.data.forEach(function(d) {
+          d.value = (d.value <= 40 ? d.value : 40);
+        });
+        d3.json("/flask/ferris/sensor/compState",function(d) {
+          comp_data=d;
+          draw_display();
+          draw_timer(beer_data);
+        });
       });
     });
   });
-});
-/*
-draw_display();
-draw_timer(beer_data); */
-//console.log(data);
-
-var beer_data = {'name':"Czech Czillsner", 'endtime':1460088000*1000,
-  'starttime':1458878400*1000, 'PSI':14.0, 'carbonation':2.48};
+};
 
 function estimate_carbonation(psi,temp) {
   //TODO add real estimate
   return 2.4;
-}
+};
 
-function draw_display(data) {
+function draw_display() {
   // process the data in some useful ways
-  data.forEach(function(d) {
-    d.time = new Date(+d.time*1000);
-  });
+  data = window.data;
+
   // console.log(data);
   //extract the fridge & freezer data, as well as the current time
   //console.log(data);
@@ -55,23 +52,19 @@ function draw_display(data) {
   d3.select('#update-time').text('Last Updated '+time_fmt(last_time));
   //console.log(last_time);
   //console.log(time_fmt(new Date(+last_time)));
-  var col = 'Springgreen';
-  d3.select('#fridge-temp').text(temp_fridge['value'].toString()).attr('style','color:'+col);
-  d3.select('#controller-state').text(comp_data[comp_data.length-1]['value'].toString()).attr('style','color:'+col);
-
-
-  //add timer for beer readiness
+  var col = get_color({"name":"setpoint"});
+  d3.select('#fridge-temp').text(temp_fridge['value'].toString()).style('color',col);
+  d3.select('#controller-state').text(comp_data[comp_data.length-1]['value'].toString()).style('color',col);
 
   //add plots
-  //add plot for refrigerator temperature
-  var fridgeGroup = d3.select('#fridgegroup');
   var padding = {'top':50,'left':50,'right':50,'bottom':50};
-  var height = 600;
-  var width = 1000;
+  var height = Math.floor(window.innerHeight*0.5)-padding.top-padding.bottom;
+  var width = Math.floor(window.innerWidth*0.95)-padding.left-padding.right;
+  //delete all the old data in the plot, prior to new processing
 
   d3.select('#plots-svg')
     .attr('width',width+padding.left+padding.right)
-    .attr('height',(height+padding.top+padding.bottom)*2);
+    .attr('height',height+padding.top+padding.bottom);
 
   var x = d3.time.scale()
     .range([0, width]);
@@ -90,28 +83,27 @@ function draw_display(data) {
   x.domain(d3.extent(data, function(d) { return d.time; }));
   fridgeY.domain(d3.extent(data, function(d) { return +d.value; }));
 
+
+  //add plot for refrigerator temperature
+  //remove the old data
+  d3.select('#plots-svg').selectAll("g").remove()
+  var fridgeGroup = d3.select('#plots-svg').append("g");
+
   fridgeGroup.append('g').attr('class','x axis')
     .attr('transform','translate(0,'+height+')')
     .call(xAxis);
 
   fridgeGroup.append('g').attr('class','y axis')
     .attr('transform','translate(0,0)')
-    .call(fridgeYAxis)
-    .append("text")
-    //.attr("transform", "rotate(-90)")
-    .attr("y", 6)
-    .attr("dy", ".71em")
-    .attr('transform','translate(5,-5)')
-    .style("text-anchor", "start")
-    .text("Fridge Temp. (C)");
-
+    .call(fridgeYAxis);
+  var axis_y = d3.select(".y");
   function get_color(d) {
     if (d.name=="fridge2") {
-      return d3.rgb(255.0,0.0,0.0);
+      return d3.rgb(255,77,116);
     } else if (d.name=="icebox1") {
-      return d3.rgb(0.0,0.0,255.0);
+      return d3.rgb(45,163,232);
     } else if (d.name=="setpoint") {
-      return d3.rgb(0.0,255.0,0.0);
+      return d3.rgb(95,255,153);
     } else {
       return d3.rgb(0.0,0.0,0.0);
     }
@@ -120,13 +112,18 @@ function draw_display(data) {
   fridgeGroup.selectAll('.scatter').data(data).enter()
     .append("circle")
     .attr("class", "dot")
-    .attr("r",3.5)
+    .attr("r",1.5)
     .attr("cx", function(d) {return x(d.time)})
     .attr("cy", function(d) {return fridgeY(+d.value)})
     .style("fill", function(d) {return get_color(d)});
 
+  axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,-5)').style("text-anchor", "start").text("Temperature (C)");
+  axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,10)').style("text-anchor", "start").text("Fridge").style("fill", get_color({"name":"fridge2"}));
+  axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,25)').style("text-anchor", "start").text("Setpoint").style("fill", get_color({"name":"setpoint"}));
+  axis_y.append("text").attr("y", 6).attr("dy", ".71em").attr('transform','translate(5,40)').style("text-anchor", "start").text("Freezer").style("fill", get_color({"name":"icebox1"}));
+
   fridgeGroup.attr('transform','translate('+padding.left+','+padding.top+')');
-}
+};
 
 function draw_timer(beer_data) {
   var height=125;
@@ -148,6 +145,9 @@ function draw_timer(beer_data) {
   timestr = d.toString()+':'+h+':'+m;
 
   svg = d3.select('#current-timer');
+  //delete any old data
+  svg.select("text").remove();
+  svg.select("path").remove();
   svg.attr('width',(width+(padding*2)).toString()).attr('height',(height+(padding*2)).toString());
   svg.append('text')
     .attr('transform','translate('+width/2+padding*2+','+height/2+padding*2+15+')')
@@ -166,4 +166,12 @@ function draw_timer(beer_data) {
     .attr('id','timer-arc')
     .attr('d',arc)
     .attr('transform','translate('+width/2+padding+','+height/2+padding+')');
-}
+};
+
+
+var beer_data = {'name':"Cans, Waiting to Start...", 'endtime':1485100800*1000,
+  'starttime':1484755200*1000, 'PSI':"-", 'carbonation':"-"};
+window.data = [];
+load_and_render();
+//create a timer to refresh the data every 35 seconds
+var intervalID = window.setInterval(load_and_render, 35000);
