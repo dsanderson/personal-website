@@ -33,7 +33,9 @@ input {
   margin-top: 5px;
   margin-right: 5px;
   color:#FFF;
-  background-color: #102010;
+  background-color: #101013;
+  border-style: solid;
+  border-color: #131313;
 }
 
 select {
@@ -81,14 +83,14 @@ button {
 }
 
 a {
-  color:#DFD;
+  color:#F2F2F2;
 }
 
 
 a:link {
-  color:#DFD;
+  color:#F2F2F2;
 }
 
 a:visited {
-  color:#DFD;
+  color:#F2F2F2;
 }
