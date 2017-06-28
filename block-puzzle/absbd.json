@@ -1,0 +1,3 @@
+{"summary":{"title":"Block Puzzle Solver","description":"A friend once described sudoku as a DDOS for the brain.  Turns out my vulnerability is wooden block puzzles.",
+  "type":"article","catagory":["programming","puzzle"],"link":"/block-puzzle","published":1498664384},
+"run":"python pandoc-templater.py {loc}"}
