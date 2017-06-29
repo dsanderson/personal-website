@@ -22,7 +22,7 @@ def is_web(fname):
 def rename(fname):
     fn = fname.split(".")
     fn[-2] = fn[-2]+"-web"
-    fn = "."join(fn)
+    fn = ".".join(fn)
     return fn
 
 for p in pngs:
