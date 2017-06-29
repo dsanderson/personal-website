@@ -29,7 +29,7 @@ for p in pngs:
     if not is_web(p):
         print "Converting {}".format(p)
         fn = rename(p)
-        command = ["convert", p, "-quality", "85", fn]
+        command = ["convert", p, "-quality", "85", "-resize", "600", fn]
         subprocess.call(command)
     else:
         print "Skipping {}".format(p)
@@ -38,7 +38,7 @@ for j in jpgs:
     if not is_web(j):
         print "Converting {}".format(j)
         fn = rename(j)
-        command = ["convert", j, "-quality", "80", fn]
+        command = ["convert", j, "-quality", "80", "-resize", "600", fn]
         subprocess.call(command)
     else:
         print "Skipping {}".format(j)
@@ -47,7 +47,7 @@ for g in gifs:
     if not is_web(g):
         print "Converting {}".format(g)
         fn = rename(g)
-        command = ["convert", g, "-layers", "Optimize", fn]
+        command = ["convert", g, "-layers", "Optimize", "-resize", "600", fn]
         subprocess.call(command)
     else:
         print "Skipping {}".format(g)
