@@ -1,8 +1,17 @@
-import os, subprocess, glob, sys
+import os, subprocess, glob, sys, fnmatch
 
-pngs = glob.glob("*.png")
-jpgs = glob.glob("*.jpg")
-gifs = glob.glob("*.gif")
+pngs = []
+jpgs = []
+gifs = []
+
+matches = []
+for root, dirnames, filenames in os.walk('.'):
+    for filename in fnmatch.filter(filenames, '*.png'):
+        pngs.append(os.path.join(root, filename))
+    for filename in fnmatch.filter(filenames, '*.jpg'):
+        jpgs.append(os.path.join(root, filename))
+    for filename in fnmatch.filter(filenames, '*.gif'):
+        gifs.append(os.path.join(root, filename))
 
 def is_web(fname):
     fn = fname.split(".")[-2]
