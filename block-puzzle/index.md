@@ -8,9 +8,9 @@ The puzzle involves assembling several shapes into a 3X4X5 rectangular prism.  A
 * **Pose**: A particular rotation and position of a particular shape.  Each shape has several possible poses, and the complete puzzle will have a single pose for each shape.
 * **State**: A collection of poses, representing a partially (or completely!) solved puzzle.  In a *valid* state, each shape only appears zero or one times, and none of the poses overlap.
 
-![](/block-puzzle/solved-web.png)
+![](/block-puzzle/solved-web.jpg)
 
-![](/block-puzzle/shapes-web.png)
+![](/block-puzzle/shapes-web.jpg)
 
 ## Starting out
 

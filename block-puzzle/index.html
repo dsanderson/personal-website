@@ -40,11 +40,11 @@
 <li><strong>State</strong>: A collection of poses, representing a partially (or completely!) solved puzzle. In a <em>valid</em> state, each shape only appears zero or one times, and none of the poses overlap.</li>
 </ul>
 <div class="figure">
-<img src="/block-puzzle/solved-web.png" />
+<img src="/block-puzzle/solved-web.jpg" />
 
 </div>
 <div class="figure">
-<img src="/block-puzzle/shapes-web.png" />
+<img src="/block-puzzle/shapes-web.jpg" />
 
 </div>
 <h2 id="starting-out">Starting out</h2>
@@ -104,6 +104,84 @@ ________________
 <h2 id="the-solution">The solution</h2>
 <p>Was something I should have done at the beginning. Remember how I mentioned that I fixed the order to try shapes upfront, with shapes with the fewest unique poses going first? I switched that over to pick, after adding each shape, the shape with the fewest <em>remaining</em> poses. This approach found dozens of solutions, and found the first one almost instantly.</p>
 <p>The lesson? If you think you have a strategy, make sure the strategy executes on the most up-to-date information possible, before giving up.</p>
+<p>Below is the solution, shown as the position of each individual shape.</p>
+<pre><code>Shape 0:
+#####  -----  -----
+-----  -----  -----
+-----  -----  -----
+-----  -----  -----
+
+Shape 1:
+-----  -----  #----
+-----  -----  #----
+-----  -----  -----
+-----  -----  -----
+
+Shape 2:
+-----  #----  -----
+-----  #----  -----
+-----  #----  #----
+-----  -----  #----
+
+Shape 3:
+-----  -----  -----
+-----  -----  -----
+-----  -----  -----
+-----  ####-  ---#-
+
+Shape 4:
+-----  -----  -----
+#----  -----  -----
+#----  -----  -----
+###--  -----  -----
+
+Shape 5:
+-----  -----  -----
+-----  -----  --#--
+-----  -----  --##-
+-----  -----  -##--
+
+Shape 6:
+-----  -----  -----
+-----  -----  -----
+-#---  -###-  -#---
+-----  -----  -----
+
+Shape 7:
+-----  -----  -----
+---#-  -###-  -#---
+-----  -----  -----
+-----  -----  -----
+
+Shape 8:
+-----  -----  -----
+-##--  -----  -----
+--##-  -----  -----
+---#-  -----  -----
+
+Shape 9:
+-----  -----  -####
+-----  -----  ---#-
+-----  -----  -----
+-----  -----  -----
+
+Shape 10:
+-----  -###-  -----
+-----  -----  -----
+-----  -----  -----
+-----  -----  -----
+
+Shape 11:
+-----  ----#  -----
+----#  ----#  ----#
+-----  ----#  -----
+-----  -----  -----
+
+Shape 12:
+-----  -----  -----
+-----  -----  -----
+----#  -----  ----#
+----#  ----#  ----#</code></pre>
 <h2 id="the-pose-generating-code">The pose-generating code</h2>
 <pre><code>import copy, pickle
 

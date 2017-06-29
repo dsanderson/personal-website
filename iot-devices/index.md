@@ -4,11 +4,11 @@ I really like the idea of IoT.  Not so much vendors coming out with their own pr
 
 ## Esquilo
 
-![](/images/iot/esquilo.png)
+![](/images/iot/esquilo-web.png)
 
 The [esquilo](https://www.esquilo.io/) is a wifi-enabled microcontroller with onboard filestorage, a webserver, a real-time operating system, and a bunch of GPIO pins and libraries to support them.  The really cool, differentiating feature here is the onboard storage and webserver.  Since the board runs its own webserver, the web-based IDE is served by the board itself.  Once connected to your wifi, you can access the board from anywhere else on that network to program, debug, upload files or download files.
 
-![](/images/iot/esquilo-ide.gif)
+![](/images/iot/esquilo-ide-web.gif)
 
 This is really cool, but it does have some disadvantages.  First off, since the microcontroller is (I think) single-threaded, if your real-time program doesn't pause for enough time, the IDE will stop working.  If you set the program to auto-boot, this means you won't be able to stop the program, or access the board through your browser.  They've recently added a feature to turn off auto-boot via the reset button, so this issue is less pressing.  It does mean that any programs you write need fairly significant pauses, however (around 100ms).  This caused problems for our first esquilo project; for a house party, we intended to set up beat-controlled LED lighting.  We were attemplting to do live beat detection on the esquilo, so that the DJ could easily tweak the constants or manually trigger beats, and so other networked devices could be triggered on beats.  However, the long pauses put a very low cap on our sample rate, which in turn reduced the frequencies on which we could detect beats, and the complexity of our detection algorithm.
 
@@ -20,7 +20,7 @@ I've got to say, I really like the esquilo.  While a bit pricey (at USD$50), the
 
 ## Particle Photon
 
-![](/images/iot/photon.jpg)
+![](/images/iot/photon-web.jpg)
 
 [Particle](https://www.particle.io/) (formerly Spark) was an early Kickstarter success, providing an arduino-like board with easy connectivity to the public internet.  They provide this connectivity by maintining servers to which your photon connects.  This means you can monitor and reprogram your photon from anywhere on the internet, as well as send commands to the device.  The former ability has come in useful several times, as we are using our photon to control the temperature of a beer-brewing refrigerator, and need to adjust the target temperature during the process.  Getting data from the device is even easier; a simple curl command, piped into some file, is all it takes to log every event published by the device.  My two complaints are the documentation can sometimes be organized in an unusual fashion, and the web-based IDE can be difficult to navigate.  In particular, I wasn't able to keep both my own code and the code of one of the libraries I was using open simultaneously, making debugging a tedious process.
 
@@ -28,7 +28,7 @@ This is the board I've used the least, so I have the least to say about it.  Tha
 
 ## NodeMCU
 
-![](/images/iot/nodemcu.jpg)
+![](/images/iot/nodemcu-web.jpg)
 
 A few years back, the easiest way to create IoT boards was to stick a wifi shield on an arduino.  Turns out, the chip running the wifi board is a pretty powerful microcontroller in its own right.  Some clever hardware hackers decided to ditch the Arduino, and simply provide GPIO pins on the wifi chip itself, specifically the [ESP8266](https://en.wikipedia.org/wiki/ESP8266).  This means the devices are *cheap*--you can find them on Ali Express for less than $5 apiece.
 
