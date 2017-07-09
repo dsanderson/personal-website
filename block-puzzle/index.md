@@ -75,7 +75,7 @@ About 6000 years to exhaust the space.  I left the code running over night, as I
 
 ## And slightly less geological
 
-This is when my roommate [Josh](ketts.tech) had a suggestion.  Rather than just discarding states when we run out of poses, we discard states when they contain an unfillable hole.  This is a bit slower, as we need to run all remaining poses for all remaining shapes on each state (though there probably exists some ideal tradeoff between how frequently we check and how many poses remain), but it did bring our solve time down to ~4,500 years!
+This is when my roommate [Josh](http://ketts.tech) had a suggestion.  Rather than just discarding states when we run out of poses, we discard states when they contain an unfillable hole.  This is a bit slower, as we need to run all remaining poses for all remaining shapes on each state (though there probably exists some ideal tradeoff between how frequently we check and how many poses remain), but it did bring our solve time down to ~4,500 years!
 
 ## Failed attempts to be clever
 
