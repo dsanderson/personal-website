@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section><h2>Group Talk 2: Electric Boogaloo</h2></section>
+				<section>
+					<section>
+						<h3>Cognitive Strategies for Design Automation</h3>
+					</section>
+					<section>
+						<ul>
+							<li>How do design automation experts decide how to integrate computers in their design process?</li>
+							<li>What are the challenges and observations that motivate their decision process?</li>
+							<li>Where can we share ideas, approaches and solutions between architecture and engineering?</li>
+						</ul>
+					</section>
+					<section>
+						<img src="busstop.png"></img>
+					</section>
+					<section>
+						<ul>
+							<li>Limitations: What are the implicit limitations a particular design tool places on the design space?
+								<ul>
+									<li>Use upper and lower bounds extensively, to operate at a higher level of abstraction</li>
+									<li>Work up from component libraries, so limitations are explicit and motivated by reality</li>
+									<li>Have the designers manually find bounds on the spaces</li>
+								</ul>
+							</li>
+							<li>Discovery: finding the right software, discovering how to use it, locating input data and models, etc.
+								<ul>
+									<li>Crowdsourcing</li>
+									<li>Hiring experts</li>
+									<li>Use crowdsourcing to train computer models</li>
+									<li>Build your own software</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					Common Strategy: Start with components, with accurate data
+					<img>Example Image</img>
+					Problem: That data doesn't exist
+				</section>
+
+				<section>
+					Common Strategy: Manually design for extrema, use computers to explore between
+					<img>Example Image</img>
+					Problem: I want a robot army
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
