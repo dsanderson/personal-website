@@ -11,6 +11,7 @@
     <script>hljs.initHighlightingOnLoad();</script>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body class="language-python">
     <div class='header'>
