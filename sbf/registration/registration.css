@@ -7,7 +7,6 @@ body {
   background-image: url("SBF_Centre.jpg");
   background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
-  background-position: center center;
   color: #FFF;
 }
 
@@ -38,6 +37,14 @@ body {
   justify-content: flex-end;
   align-items: flex-start;
   align-content: flex-start;
+}
+
+p {
+  margin: 5px auto;
+}
+
+video {
+  margin: 5px auto;
 }
 
 .name {
