@@ -3,7 +3,7 @@ body {
   background-color: #FFF;
   margin-left: 10px;
   margin-right: 10px;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Raleway', sans-serif;
   background-image: url("SBF_Centre.jpg");
   background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
@@ -17,9 +17,9 @@ body {
   justify-content: flex-start;
   align-items: stretch;
   align-content: flex-start;
-  /*background-color: rgb(212,15,19);*/
+  /*background-color: rgb(212,15,19);
   margin-left: 0px;
-  margin-right: 0px;
+  margin-right: 0px;*/
 }
 
 .left-column {
@@ -45,6 +45,10 @@ p {
 }
 
 video {
+  margin: 5px auto;
+}
+
+iframe {
   margin: 5px auto;
 }
 
