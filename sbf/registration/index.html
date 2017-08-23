@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="header">
-      <video id="preview"></video>
+      <video width="200" id="preview"></video>
       <span class="intro-message">Official Opening of SBF and SBF Foundation Offices</span></br>
       <span class="instructions">Please scan your QR code</span>
     </div>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="render-holder">
-      <iframe id="render"></iframe>
+      <iframe id="render" height="200" width="300" style="border:none;"></iframe>
     </div>
 
     <script type="text/javascript">
@@ -39,7 +39,7 @@
         xmlHttp.onreadystatechange = function() {
               if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
                   {set_page(JSON.parse(xmlHttp.responseText));
-                  var timeoutID = window.setTimeout(slowAlert, 5000);};
+                  var timeoutID = window.setTimeout(reset, 5000);};
         }
         xmlHttp.open("GET", url, true);
         xmlHttp.send(null);
