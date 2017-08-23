@@ -14,11 +14,11 @@ body {
 
 .wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: stretch;
-  align-content: flex-start;
+  align-content: center;
   /*background-color: rgb(212,15,19);
   margin-left: 0px;
   margin-right: 0px;*/
