@@ -43,7 +43,7 @@
         xmlHttp.open("GET", url, true);
         xmlHttp.send(null);
       }
-      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false });
       scanner.addListener('scan', function (content) {
         fetch_and_set(content);
       });
