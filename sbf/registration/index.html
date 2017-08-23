@@ -33,6 +33,7 @@
         document.getElementById('render').style.visibility = "visible";
       }
       function fetch_and_set(code) {
+        console.log(code);
         var xmlHttp = new XMLHttpRequest();
         var url = "/flask/sbf/qr-lookup/"+code
         xmlHttp.onreadystatechange = function() {
