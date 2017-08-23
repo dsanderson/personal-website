@@ -8,7 +8,7 @@ body {
   background-image: url("SBF_Centre.jpg");
   background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
-  background-position: center 0%;
+  background-position: center -10%;
   color: #000;
 }
 
@@ -27,14 +27,16 @@ body {
 .left-column {
   margin: 10px;
   padding: 15px;
-  width: 400px;
-  background-color: #fff;
+  width: 600px;
+  background-color: rgba(255,255,255,0.8);
 	border-radius: 4px;
   box-shadow: 0 0 40px lighten(#000, 60%);
 }
 
 .right-column {
-  width: 800px;
+  margin: 10px;
+  padding: 15px;
+  width: 600px;
   background-color: #fff;
 	border-radius: 4px;
   box-shadow: 0 0 40px lighten(#000, 60%);
