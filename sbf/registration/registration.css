@@ -1,0 +1,37 @@
+body {
+  margin-top: 0px;
+  background-color: #FFF;
+  margin-left: 0px;
+  margin-right: 0px;
+  font-family: 'Raleway', sans-serif;
+  background-image: url("SBF_Centre.jpg");
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: flex-start;
+  /*background-color: rgb(212,15,19);*/
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.left-column {
+  width: 400px;
+}
+
+.right-column {
+  width: 800px;
+}
+
+.header-vertical {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: flex-start;
+  align-content: flex-start;
+}
