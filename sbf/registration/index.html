@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SBF Registration Scanner</title>
+    <script type="text/javascript" src="instascan.min.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <video id="preview"></video>
+      <span class="intro-message">Official Opening of SBF and SBF Foundation Offices</span></br>
+      <span class="instructions">Please scan your QR code</span>
+    </div>
+
+    <div class="greeting">
+    </div>
+
+    <div class="render-holder">
+      <iframe id="render"></iframe>
+    </div>
+
+    <script type="text/javascript">
+      function reset() {
+        document.getElementById("greeting").style.visibility = "hidden";
+        document.getElementById('render').style.visibility = "hidden";
+      }
+      function set_page(data) {
+        var greeting = "<p>Welcome</p><p class='name'>"+data["salutation"]+" "+data["name"]+"</p><p class='company'>"+data["company"]+"</p>";
+        var render_url = "https://dsa.tech/sbf/renders/"+"0"+"/untitled_VR.4.html"//"https://dsa.tech/sbf/renders/"+data["cube"]+"/untitled_VR.4.html"
+        document.getElementById("greeting").innerHTML = greeting;
+        document.getElementById("greeting").style.visibility = "visible";
+        document.getElementById('render').src = render_url;
+        document.getElementById('render').style.visibility = "visible";
+      }
+      function fetch_and_set(code) {
+        var xmlHttp = new XMLHttpRequest();
+        var url = "/flask/sbf/qr-lookup/"+code
+        xmlHttp.onreadystatechange = function() {
+              if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                  {set_page(JSON.parse(xmlHttp.responseText));
+                  var timeoutID = window.setTimeout(slowAlert, 5000);};
+        }
+        xmlHttp.open("GET", url, true);
+        xmlHttp.send(null);
+      }
+      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      scanner.addListener('scan', function (content) {
+        fetch_and_set(content);
+      });
+      Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+          scanner.start(cameras[1]);
+        } else {
+          console.error('No cameras found.');
+        }
+      }).catch(function (e) {
+        console.error(e);
+      });
+      reset();
+    </script>
+  </body>
+</html>
