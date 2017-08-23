@@ -1,11 +1,11 @@
 body {
   margin-top: 0px;
-  background-color: #FFF;
+  background-color: #000;
   margin-left: 10px;
   margin-right: 10px;
   font-family: 'Raleway', sans-serif;
   background-image: url("SBF_Centre.jpg");
-  background-size:     cover;                      /* <------ */
+  background-size:     contain;                      /* <------ */
   background-repeat:   no-repeat;
   color: #FFF;
 }

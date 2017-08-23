@@ -48,7 +48,7 @@
         xmlHttp.onreadystatechange = function() {
               if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
                   {set_page(JSON.parse(xmlHttp.responseText));
-                  var timeoutID = window.setTimeout(reset, 5000);};
+                  var timeoutID = window.setTimeout(reset, 30000);};
         }
         xmlHttp.open("GET", url, true);
         xmlHttp.send(null);
