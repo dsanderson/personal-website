@@ -1,15 +1,15 @@
 body {
   margin-top: 0px;
-  background-color: #000;
+  background-color: rgb(79, 80, 143);
   margin-left: 10px;
   margin-right: 10px;
   font-family: 'Raleway', sans-serif;
-  font-size: 1.5em;
+  font-size: 2em;
   background-image: url("SBF_Centre.jpg");
   background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
-  background-position: center 25%;
-  color: #FFF;
+  background-position: center 0%;
+  color: #000;
 }
 
 .wrapper {
@@ -25,11 +25,19 @@ body {
 }
 
 .left-column {
+  margin: 10px;
+  padding: 15px;
   width: 400px;
+  background-color: #fff;
+	border-radius: 4px;
+  box-shadow: 0 0 40px lighten(#000, 60%);
 }
 
 .right-column {
   width: 800px;
+  background-color: #fff;
+	border-radius: 4px;
+  box-shadow: 0 0 40px lighten(#000, 60%);
 }
 
 .header-vertical {
@@ -57,11 +65,11 @@ iframe {
 }
 
 .name {
-  font-size: 2em;
+  font-size: 2.5em;
   font-weight: bold;
 }
 
 .company {
-  font-size: 2em;
+  font-size: 2.5em;
   font-weight: bold;
 }
