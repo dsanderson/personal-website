@@ -1,6 +1,6 @@
 body {
   margin-top: 0px;
-  background-color: rgb(79, 80, 143);
+  background-color: rgb(35, 71, 255);
   margin-left: 10px;
   margin-right: 10px;
   font-family: 'Raleway', sans-serif;
@@ -27,7 +27,7 @@ body {
 .left-column {
   margin: 10px;
   padding: 15px;
-  width: 600px;
+  width: 700px;
   background-color: rgba(255,255,255,0.8);
 	border-radius: 4px;
   box-shadow: 0 0 40px lighten(#000, 60%);
@@ -36,8 +36,8 @@ body {
 .right-column {
   margin: 10px;
   padding: 15px;
-  width: 600px;
-  background-color: #fff;
+  width: 700px;
+  background-color: rgba(255,255,255,0.8);
 	border-radius: 4px;
   box-shadow: 0 0 40px lighten(#000, 60%);
 }
