@@ -19,9 +19,9 @@
         <hr></hr>
       </div>
 
-      <div class="left-column">
-        <div class="header">
-          <p class="instructions">Please scan your QR code</p>
+      <div class="left-column" id="left-column">
+        <div class="header" id="header">
+          <p class="instructions" id="instructions">Please scan your QR code</p>
           <div id="video-wrapper">
             <video width="300" id="preview"></video>
           </div>
@@ -43,11 +43,11 @@
         document.getElementById("greeting").style.visibility = "hidden";
         document.getElementById('render').style.visibility = "hidden";
         document.getElementById('right-column').style.display = "none";
-        document.getElementById('left-column').style.display = "inline";
-        document.getElementById('preview').style.display = "inline";
-        document.getElementById('instructions').style.display = "inline";
-        document.getElementById('video-wrapper').style.display = "inline";
-        document.getElementById('header').style.display = "inline";
+        document.getElementById('left-column').style.display = "block";
+        document.getElementById('preview').style.display = "block";
+        document.getElementById('instructions').style.display = "block";
+        document.getElementById('video-wrapper').style.display = "block";
+        document.getElementById('header').style.display = "block";
       }
       function set_page(data) {
         var greeting = "<p>Welcome</p><p class='name'>"+data["salutation"]+" "+data["name"]+"</p><p class='company'>"+data["company"]+"</p>";
