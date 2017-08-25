@@ -10,11 +10,21 @@
   </head>
   <body>
     <div class="wrapper">
+      <div class="top-matter">
+        <table>
+          <tr>
+            <td><img src="SBF_logo.png"></img></td>
+            <td><img src="SBFF_logo.png"></img></td>
+          </tr>
+        </table>
+        <p>Official Opening of SBF and SBFF Foundation Offices</p>
+        <hr></hr>
+      </div>
+
       <div class="left-column">
         <div class="header">
           <p class="instructions">Please scan your QR code</p>
           <video width="350" id="preview"></video>
-          <p class="intro-message">Official Opening of the SBF and SBF Foundation Offices</p>
         </div>
       </div>
 
@@ -33,6 +43,7 @@
         document.getElementById("greeting").style.visibility = "hidden";
         document.getElementById('render').style.visibility = "hidden";
         document.getElementById('right-column').style.display = "none";
+        document.getElementById('left-column').style.display = "inline";
       }
       function set_page(data) {
         var greeting = "<p>Welcome</p><p class='name'>"+data["salutation"]+" "+data["name"]+"</p><p class='company'>"+data["company"]+"</p>";
@@ -42,6 +53,7 @@
         document.getElementById('render').src = render_url;
         document.getElementById('render').style.visibility = "visible";
         document.getElementById('right-column').style.display = "inline";
+        document.getElementById('left-column').style.display = "none";
       }
       function fetch_and_set(code) {
         console.log(code);
