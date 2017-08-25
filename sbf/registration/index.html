@@ -70,7 +70,7 @@
         xmlHttp.onreadystatechange = function() {
               if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
                   {set_page(JSON.parse(xmlHttp.responseText));
-                  var timeoutID = window.setTimeout(reset, 30000);};
+                  var timeoutID = window.setTimeout(reset, 10000);};
         }
         xmlHttp.open("GET", url, true);
         xmlHttp.send(null);
@@ -81,7 +81,7 @@
       });
       Instascan.Camera.getCameras().then(function (cameras) {
         if (cameras.length > 0) {
-          scanner.start(cameras[1]);
+          scanner.start(cameras[0]);
         } else {
           console.error('No cameras found.');
         }
