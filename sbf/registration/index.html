@@ -44,6 +44,10 @@
         document.getElementById('render').style.visibility = "hidden";
         document.getElementById('right-column').style.display = "none";
         document.getElementById('left-column').style.display = "inline";
+        document.getElementById('preview').style.display = "inline";
+        document.getElementById('instructions').style.display = "inline";
+        document.getElementById('video-wrapper').style.display = "inline";
+        document.getElementById('header').style.display = "inline";
       }
       function set_page(data) {
         var greeting = "<p>Welcome</p><p class='name'>"+data["salutation"]+" "+data["name"]+"</p><p class='company'>"+data["company"]+"</p>";
@@ -54,6 +58,10 @@
         document.getElementById('render').style.visibility = "visible";
         document.getElementById('right-column').style.display = "inline";
         document.getElementById('left-column').style.display = "none";
+        document.getElementById('preview').style.display = "none";
+        document.getElementById('instructions').style.display = "none";
+        document.getElementById('video-wrapper').style.display = "none";
+        document.getElementById('header').style.display = "none";
       }
       function fetch_and_set(code) {
         console.log(code);
