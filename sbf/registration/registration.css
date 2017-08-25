@@ -8,7 +8,7 @@ body {
   /*background-image: url("SBF_Centre.jpg");
   background-size:     cover;
   background-repeat:   no-repeat;
-  background-position: center -10%;*/
+  background-position: center -18%; */
   color: #000;
 }
 
@@ -59,6 +59,14 @@ p {
 video {
   display:block;
   margin: 5px auto;
+  padding-left: 175px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+#video-wrapper {
+  height: 350px;
 }
 
 iframe {
