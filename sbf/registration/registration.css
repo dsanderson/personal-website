@@ -59,7 +59,7 @@ p {
 video {
   display:block;
   margin: 5px auto;
-  padding-top: 30px;
+  padding-left: 175px;
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
   transform: rotate(90deg);
