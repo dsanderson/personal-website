@@ -59,9 +59,13 @@ p {
 video {
   display:block;
   margin: 5px auto;
-  -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
-  transform: rotate(-90deg);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+#video-wrapper {
+  height: 400px;
 }
 
 iframe {
