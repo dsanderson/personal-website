@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SBF Registration Scanner</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="registration.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="top-matter">
+        <div class="img-wrapper">
+          <img src="SBF_logo_cubes.png"></img>
+          <img src="SBFF_logo_cubes.png"></img>
+        </div>
+        <p>Official Opening of SBF and SBFF Foundation Offices</p>
+        <hr></hr>
+      </div>
+
+      <div class="left-column" id="left-column">
+        <div class="header" id="header">
+          <p class="instructions" id="instructions">Please scan your QR code</p>
+        </div>
+      </div>
+
+      <div class="right-column" id="right-column">
+        <div id="greeting">
+        </div>
+
+        <div class="render-holder">
+          <iframe id="render" height="350" width="500" style="border:none;"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      function reset() {
+        document.getElementById("greeting").style.visibility = "hidden";
+        document.getElementById('render').style.visibility = "hidden";
+        document.getElementById('right-column').style.display = "none";
+      }
+      function set_page(data) {
+        var greeting = "<p>Welcome</p><p class='name'>"+data["salutation"]+" "+data["name"]+"</p><p class='company'>"+data["company"]+"</p>";
+        var render_url = "https://dsa.tech/sbf/renders/"+"0"+"/untitled_VR.4.html"//"https://dsa.tech/sbf/renders/"+data["cube"]+"/untitled_VR.4.html"
+        document.getElementById("greeting").innerHTML = greeting;
+        document.getElementById("greeting").style.visibility = "visible";
+        document.getElementById('render').src = render_url;
+        document.getElementById('render').style.visibility = "visible";
+        document.getElementById('right-column').style.display = "inline";
+      }
+      function fetch_and_set(code) {
+        console.log(code);
+        var xmlHttp = new XMLHttpRequest();
+        var url = "/flask/sbf/qr-lookup/"+code
+        xmlHttp.onreadystatechange = function() {
+              if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                  {set_page(JSON.parse(xmlHttp.responseText));
+                  var timeoutID = window.setTimeout(reset, 10000);};
+        }
+        xmlHttp.open("GET", url, true);
+        xmlHttp.send(null);
+      }
+      function capture_keys(key) {
+        if (key.keycode == 49) {
+          window.qr_code = window.qr_code+"1";
+        }
+        else if (key.keycode == 50) {
+          window.qr_code = window.qr_code+"2";
+        }
+        else if (key.keycode == 51) {
+          window.qr_code = window.qr_code+"3";
+        }
+        else if (key.keycode == 52) {
+          window.qr_code = window.qr_code+"4";
+        }
+        else if (key.keycode == 53) {
+          window.qr_code = window.qr_code+"5";
+        }
+        else if (key.keycode == 54) {
+          window.qr_code = window.qr_code+"6";
+        }
+        else if (key.keycode == 55) {
+          window.qr_code = window.qr_code+"7";
+        }
+        else if (key.keycode == 56) {
+          window.qr_code = window.qr_code+"8";
+        }
+        else if (key.keycode == 57) {
+          window.qr_code = window.qr_code+"9";
+        }
+        else if (key.keycode == 48) {
+          window.qr_code = window.qr_code+"0";
+        }
+        else if (key.keycode == 13) {
+          fetch_and_set(window.qr_code);
+          console.log(window.qr_code)
+          window.qr_code = "";
+        };
+      }
+      window.qr_code = "";
+      document.onkeydown = capture_keys;
+      reset();
+    </script>
+  </body>
+</html>

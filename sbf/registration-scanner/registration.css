@@ -1,0 +1,101 @@
+body {
+  margin-top: 0px;
+  background-color: rgb(255, 255, 255);
+  margin-left: 10px;
+  margin-right: 10px;
+  font-family: 'Lato', sans-serif;
+  font-size: 2em;
+  /*background-image: url("SBF_Centre.jpg");
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center -18%; */
+  color: #000;
+}
+
+.td {
+  width: 50%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+  /*background-color: rgb(212,15,19);
+  margin-left: 0px;
+  margin-right: 0px;*/
+}
+
+.img-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  /*background-color: rgb(212,15,19);
+  margin-left: 0px;
+  margin-right: 0px;*/
+}
+
+.left-column {
+  margin: 10px;
+  padding: 15px;
+  width: 700px;
+  background-color: rgba(255,255,255,1.0);
+	border-radius: 4px;
+  box-shadow: 0 0 40px lighten(#000, 60%);
+}
+
+.right-column {
+  margin: 10px;
+  padding: 15px;
+  width: 700px;
+  background-color: rgba(255,255,255,1.0);
+	border-radius: 4px;
+  box-shadow: 0 0 40px lighten(#000, 60%);
+}
+
+.header-vertical {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+p {
+  margin: 5px auto;
+  text-align: center;
+}
+
+video {
+  display:block;
+  margin: 5px auto;
+  padding-left: 175px;
+  /*-webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  transform: rotate(90deg);*/
+}
+
+#video-wrapper {
+  /*height: 350px;*/
+}
+
+iframe {
+  display:block;
+  margin: 5px auto;
+}
+
+.name {
+  font-size: 2.5em;
+  /*font-weight: bold;*/
+}
+
+.company {
+  font-size: 2.5em;
+  /*font-weight: bold;*/
+}
