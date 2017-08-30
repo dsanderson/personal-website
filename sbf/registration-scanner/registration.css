@@ -1,6 +1,6 @@
 body {
   margin-top: 0px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(220, 228, 230);
   margin-left: 10px;
   margin-right: 10px;
   font-family: 'Lato', sans-serif;
@@ -38,6 +38,10 @@ body {
   /*background-color: rgb(212,15,19);
   margin-left: 0px;
   margin-right: 0px;*/
+}
+
+img {
+  height: 300px;
 }
 
 .left-column {
