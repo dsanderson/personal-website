@@ -62,6 +62,7 @@
         xmlHttp.send(null);
       }
       function capture_keys(key) {
+        console.log(key.keycode);
         if (key.keycode == 49) {
           window.qr_code = window.qr_code+"1";
         }
