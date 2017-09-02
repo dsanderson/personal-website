@@ -42,7 +42,12 @@
       }
       function set_page(data) {
         var greeting = "<p>Welcome</p><p class='name'>"+data["salutation"]+" "+data["name"]+"</p><p class='company'>"+data["company"]+"</p>";
-        var render_url = "https://dsa.tech/sbf/renders/"+"0"+"/untitled_VR.4.html"//"https://dsa.tech/sbf/renders/"+data["cube"]+"/untitled_VR.4.html"
+        if (data["sign"]=="SBFF") {
+            var render_url = "https://dsa.tech/sbf/renders/"+"0"+"/untitled_VR.9.html";
+        }
+        else {
+            var render_url = "https://dsa.tech/sbf/renders/"+"0"+"/untitled_VR.11.html";
+        }
         document.getElementById("greeting").innerHTML = greeting;
         document.getElementById("greeting").style.visibility = "visible";
         document.getElementById('render').src = render_url;
